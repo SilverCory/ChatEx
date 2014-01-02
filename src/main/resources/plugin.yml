@@ -1,0 +1,6 @@
+name: ChatEx
+main: de.JeterLP.ChatManager.ChatManager
+version: ${project.version}
+author: TheJeterLP
+description: Chat management plugin
+softdepend: [PermissionsEx,Vault,Factions,mcore]
