@@ -198,15 +198,6 @@ public class Utils {
                 return result;
         }
 
-        public static final EventPriority GETPRIORITY() {
-                EventPriority pr = EventPriority.LOWEST;
-                try {
-                        pr = EventPriority.valueOf(Config.EVENTPRIORITY.getString().toUpperCase());
-                } catch (Exception e) {
-                }
-                return pr;
-        }
-
         protected static void registerListener() {
                 try {
                         String prio = Config.EVENTPRIORITY.getString();
