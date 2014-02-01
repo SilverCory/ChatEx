@@ -1,6 +1,7 @@
 package de.JeterLP.ChatManager.Plugins;
 
-import de.JeterLP.ChatManager.ChatManager;
+import de.JeterLP.ChatManager.ChatEX;
+import de.JeterLP.ChatManager.HookManager;
 import org.bukkit.entity.Player;
 
 /**
@@ -9,12 +10,12 @@ import org.bukkit.entity.Player;
 public class PluginManager implements PermissionsPlugin {
 
         private final PermissionsPlugin handler;
-        private final ChatManager manager = ChatManager.getInstance();
+        private final ChatEX manager = ChatEX.getInstance();
 
         public PluginManager() {
-                if (ChatManager.getHook().checkPEX()) {
+                if (HookManager.getInstance().checkPEX()) {
                         handler = new pex();
-                } else if (manager.setupChat() && ChatManager.getHook().checkVault()) {
+                } else if (manager.setupChat() && HookManager.getInstance().checkVault()) {
                         handler = new Vault();
                 } else {
                         handler = new noPermPlugin();

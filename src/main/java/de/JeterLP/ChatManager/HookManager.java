@@ -8,6 +8,15 @@ import org.bukkit.plugin.Plugin;
  */
 public class HookManager {
 
+        private static final HookManager INSTANCE = new HookManager();
+
+        private HookManager() {
+        }
+
+        public static HookManager getInstance() {
+                return INSTANCE;
+        }
+
         public boolean checkVault() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Vault");
                 return plugin != null && plugin.isEnabled();
@@ -26,6 +35,11 @@ public class HookManager {
         public boolean checkMVCore() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
                 return plugin != null && plugin.isEnabled();
+        }
+
+        public boolean checkEssentials() {
+                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Essentials");
+                return plugin != null;
         }
 
 }

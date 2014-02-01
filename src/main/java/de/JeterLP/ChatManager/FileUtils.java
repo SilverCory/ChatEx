@@ -3,60 +3,48 @@ package de.JeterLP.ChatManager;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 /**
  * @author TheJeterLP
  */
 public class FileUtils {
 
-        private BufferedWriter w;
-        private File log;
-
-        public void init() throws IOException {
+        public static void writeToFile(String player, String message) {
                 if (!Config.LOGCHAT.getBoolean()) return;
-                log = new File(ChatManager.getInstance().getDataFolder().getAbsolutePath() + File.separator + "logs" + File.separator + getMonth() + ".log");
-                if (!log.exists()) {
-                        log.createNewFile();
-                        w = new BufferedWriter(new FileWriter(log));
-                        return;
+                BufferedWriter bw = null;
+                File file = new File(ChatEX.getInstance().getDataFolder().getAbsolutePath() + File.separator + "logs");
+                if (!file.exists()) {
+                        file.mkdir();
                 }
-                w = new BufferedWriter(new FileWriter(log));
-                w.newLine();
-
+                try {
+                        bw = new BufferedWriter(new FileWriter(file + File.separator + fileName(), true));
+                        bw.write(prefix() + player + ": " + message);
+                        bw.newLine();
+                } catch (Exception ex) {
+                } finally {
+                        try {
+                                if (bw != null) {
+                                        bw.flush();
+                                        bw.close();
+                                }
+                        } catch (Exception ex) {
+                        }
+                }
         }
 
-        public void log(String player, String message) throws IOException {
-                if (!Config.LOGCHAT.getBoolean()) return;
-                w.write(getTime() + player + ": " + message);
-                w.flush();
-                w.newLine();
+        public static String fileName() {
+                DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+                Calendar cal = Calendar.getInstance();
+                return date.format(cal.getTime()) + ".log";
         }
 
-        public void stopLogging() throws IOException {
-                if (!Config.LOGCHAT.getBoolean()) return;
-                w.close();
-        }
-
-        private String getMonth() {
-                Calendar c = Calendar.getInstance();
-                int month = c.get(Calendar.MONTH);
-                month++;
-                int year = c.get(Calendar.YEAR);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                return day + "-" + month + "-" + year;
-        }
-
-        private String getTime() {
-                Calendar c = Calendar.getInstance();
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
-                return hour + ":" + minute + " ";
+        public static String prefix() {
+                DateFormat date = new SimpleDateFormat("[HH:mm:ss] ");
+                Calendar cal = Calendar.getInstance();
+                return date.format(cal.getTime());
         }
 
 }

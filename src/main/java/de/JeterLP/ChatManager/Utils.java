@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventPriority;
 
 /**
  * @author TheJeterLP
@@ -28,6 +29,14 @@ public class Utils {
         private final String permissionChatUnderline = "chatex.chat.underline";
         private final String permissionChatItalic = "chatex.chat.italic";
         private final String permissionChatReset = "chatex.chat.reset";
+        private static final Utils INSTANCE = new Utils();
+
+        private Utils() {
+        }
+
+        public static Utils getInstance() {
+                return INSTANCE;
+        }
 
         public String translateColorCodes(String string, Player p) {
                 if (string == null) {
@@ -66,19 +75,19 @@ public class Utils {
 
         public String replacePlayerPlaceholders(Player player, String format) {
                 String result = format;
-                result = result.replace("%prefix", this.replaceColors(ChatManager.getManager().getPrefix(
+                result = result.replace("%prefix", this.replaceColors(ChatEX.getManager().getPrefix(
                                 player,
                                 player.getWorld().getName(),
                                 Config.MULTIPREFIXES.getBoolean(),
                                 Config.PREPENDPREFIX.getBoolean())));
-                result = result.replace("%suffix", this.replaceColors(ChatManager.getManager().getSuffix(
+                result = result.replace("%suffix", this.replaceColors(ChatEX.getManager().getSuffix(
                                 player,
                                 player.getWorld().getName(),
                                 Config.MULTISUFFIXES.getBoolean(),
                                 Config.PREPENDSUFFIX.getBoolean())));
+                result = result.replace("%player", player.getDisplayName());
                 result = result.replace("%world", this.replaceColors(player.getWorld().getName()));
-                result = result.replace("%player", player.getName());
-                result = result.replace("%group", this.replaceColors(ChatManager.getManager().getGroupNames(player, player.getWorld().getName())[0]));
+                result = result.replace("%group", this.replaceColors(ChatEX.getManager().getGroupNames(player, player.getWorld().getName())[0]));
                 result = this.replaceColors(replaceTime(result));
                 result = this.replaceColors(replaceFaction(result, player));
                 return result;
@@ -123,30 +132,31 @@ public class Utils {
                 if (message.contains("%M")) {
                         String month = "";
                         final int monat = calendar.get(Calendar.MONTH) + 1;
-                        if (monat == 1) {
-                                month = "January";
-                        } else if (monat == 2) {
-                                month = "February";
-                        } else if (monat == 3) {
-                                month = "March";
-                        } else if (monat == 4) {
-                                month = "April";
-                        } else if (monat == 5) {
-                                month = "May";
-                        } else if (monat == 6) {
-                                month = "June";
-                        } else if (monat == 7) {
-                                month = "July";
-                        } else if (monat == 8) {
-                                month = "August";
-                        } else if (monat == 9) {
-                                month = "September";
-                        } else if (monat == 10) {
-                                month = "October";
-                        } else if (monat == 11) {
-                                month = "November";
-                        } else if (monat == 12) {
-                                month = "December";
+                        switch (monat) {
+                                case 1:
+                                        month = "January";
+                                case 2:
+                                        month = "February";
+                                case 3:
+                                        month = "March";
+                                case 4:
+                                        month = "April";
+                                case 5:
+                                        month = "May";
+                                case 6:
+                                        month = "June";
+                                case 7:
+                                        month = "July";
+                                case 8:
+                                        month = "August";
+                                case 9:
+                                        month = "September";
+                                case 10:
+                                        month = "October";
+                                case 11:
+                                        month = "November";
+                                case 12:
+                                        month = "December";
                         }
                         message = message.replace("%M", month);
                 }
@@ -179,12 +189,37 @@ public class Utils {
 
         private String replaceFaction(String format, Player player) {
                 String result = format;
-                if (ChatManager.getHook().checkFactions()) {
+                if (HookManager.getInstance().checkFactions()) {
                         result = result.replace("%faction", this.replaceColors(Factions.getFactionName(player)));
                 } else {
                         result = result.replace("%faction", "");
                 }
                 result = this.replaceColors(result);
                 return result;
+        }
+
+        public static final EventPriority GETPRIORITY() {
+                EventPriority pr = EventPriority.LOWEST;
+                try {
+                        pr = EventPriority.valueOf(Config.EVENTPRIORITY.getString().toUpperCase());
+                } catch (Exception e) {
+                }
+                return pr;
+        }
+
+        protected static void registerListener() {
+                try {
+                        String prio = Config.EVENTPRIORITY.getString();
+                        Object listener = Class.forName("de.JeterLP.ChatManager.Listeners." + prio).newInstance();
+                        if (listener instanceof ChatListener) {
+                                ChatListener l = (ChatListener) listener;
+                                l.register();
+                                ChatEX.getInstance().getLogger().info("Listener registered with Priority: " + prio);
+                        } else {
+                                ChatEX.getInstance().getLogger().severe("Listener is not an instance of the Listener Class.");
+                        }
+                } catch (Exception ex) {
+                        ex.printStackTrace();
+                }
         }
 }
