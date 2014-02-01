@@ -21,7 +21,8 @@ public enum Config {
         PREPENDSUFFIX("prepend-player-suffix", false, "Should the Players suffix be prepended? (only PermissionsEx)"),
         LOGCHAT("logChat", true, "Should the chat be logged?"),
         EVENTPRIORITY("Priority", EventPriority.LOWEST.toString(), "EventPriority for the ChatListener. " + EventPriority.LOWEST.toString() + " Will be executed first. " + EventPriority.HIGHEST.toString() + " will be executed last. \n"
-                        + "Possible Prioritys: " + getPrioritys());
+                        + "Possible Prioritys: " + getPrioritys()),
+        UPDATE("SearchForUpdates", true, "Should the Plugin search for new Versions?");
 
         private final Object value;
         private final String path;

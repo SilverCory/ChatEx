@@ -20,6 +20,27 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>false</minimizeJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.mcstats:metrics</include>
+                                </includes>
+                            </artifactSet>                           
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -44,7 +65,11 @@
         <repository>
             <id>Own</id>
             <url>http://jeterlp.admincmd.com/maven-repo/</url>
-        </repository>      
+        </repository>  
+        <repository>
+            <id>Plugin Metrics</id>
+            <url>http://repo.mcstats.org/content/repositories/public</url>
+        </repository>    
     </repositories>
     <dependencies>      
         <dependency>
@@ -77,9 +102,15 @@
             <artifactId>jobs</artifactId>
             <version>2.11.3</version>
         </dependency>   
+        <dependency>
+            <groupId>org.mcstats</groupId>
+            <artifactId>metrics</artifactId>
+            <version>R6</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </project>

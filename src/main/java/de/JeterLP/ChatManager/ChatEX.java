@@ -2,9 +2,9 @@ package de.JeterLP.ChatManager;
 
 import de.JeterLP.ChatManager.Plugins.PermissionsPlugin;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
+import java.io.IOException;
 import org.bukkit.plugin.java.JavaPlugin;
-import net.milkbowl.vault.chat.Chat;
+import org.mcstats.Metrics;
 
 /**
  * Original author: t3hk0d3
@@ -12,9 +12,10 @@ import net.milkbowl.vault.chat.Chat;
  */
 public class ChatEX extends JavaPlugin {
 
-        private static Chat chat = null;
         private static ChatEX instance;
         private static PermissionsPlugin manager;
+        private Metrics m;
+        private AdvancedUpdater updater;
 
         @Override
         public void onEnable() {
@@ -24,6 +25,16 @@ public class ChatEX extends JavaPlugin {
                         getServer().getPluginManager().disablePlugin(this);
                         getLogger().info("disabled, check config!");
                         return;
+                }
+                try {
+                        m = new Metrics(this);
+                        m.start();
+                } catch (IOException ex) {
+                }
+                try {
+                        updater = new AdvancedUpdater(this, 65863, "http://dev.bukkit.org/bukkit-plugins/chatex/");
+                        updater.search();
+                } catch (Exception ex) {
                 }
                 manager = new PluginManager();
                 getLogger().info("Successfully hooked into: " + getManager().getName());
@@ -41,22 +52,7 @@ public class ChatEX extends JavaPlugin {
                 return manager;
         }
 
-        public static Chat getChat() {
-                return chat;
-        }
-
-        public boolean setupChat() {
-                try {
-                        RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
-                        if (chatProvider != null) {
-                                chat = chatProvider.getProvider();
-                        }
-                        return (chat != null);
-                } catch (Exception e) {
-                        return false;
-                }
-        }
-
+       
         public static ChatEX getInstance() {
                 return instance;
         }

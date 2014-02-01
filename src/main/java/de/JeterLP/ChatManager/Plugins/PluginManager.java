@@ -11,12 +11,11 @@ import org.bukkit.entity.Player;
 public class PluginManager implements PermissionsPlugin {
 
         private final PermissionsPlugin handler;
-        private final ChatEX manager = ChatEX.getInstance();
 
         public PluginManager() {
                 if (HookManager.getInstance().checkPEX()) {
                         handler = new pex();
-                } else if (manager.setupChat() && HookManager.getInstance().checkVault()) {
+                } else if (Vault.setupChat() && HookManager.getInstance().checkVault()) {
                         handler = new Vault();
                 } else {
                         handler = new noPermPlugin();

@@ -2,31 +2,36 @@ package de.JeterLP.ChatManager.Plugins;
 
 import de.JeterLP.ChatManager.ChatEX;
 import de.JeterLP.ChatManager.Config;
+import net.milkbowl.vault.chat.Chat;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 /**
  * @author TheJeterLP
  */
 public class Vault implements PermissionsPlugin {
 
+        private static Chat chat = null;
+
         @Override
         public String getPrefix(Player p, String world, boolean multiPrefixes, boolean PrependPlayerPrefix) {
-                return ChatEX.getChat().getPlayerPrefix(world, p.getName());
+                return chat.getPlayerPrefix(world, p.getName());
         }
 
         @Override
         public String getSuffix(Player p, String world, boolean multiSuffixes, boolean PrependPlayerSuffix) {
-                return ChatEX.getChat().getPlayerSuffix(world, p.getName());
+                return chat.getPlayerSuffix(world, p.getName());
         }
 
         @Override
         public String[] getGroupNames(Player p, String world) {
-                return ChatEX.getChat().getPlayerGroups(world, p.getName());
+                return chat.getPlayerGroups(world, p.getName());
         }
 
         @Override
         public String getName() {
-                return ChatEX.getChat().getName();
+                return chat.getName();
         }
 
         @Override
@@ -37,5 +42,17 @@ public class Vault implements PermissionsPlugin {
         @Override
         public String getGlobalMessageFormat(Player p) {
                 return Config.GLOBALFORMAT.getString();
+        }
+
+        public static boolean setupChat() {
+                try {
+                        RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
+                        if (chatProvider != null) {
+                                chat = chatProvider.getProvider();
+                        }
+                        return (chat != null);
+                } catch (Throwable e) {
+                        return false;
+                }
         }
 }
