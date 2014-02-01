@@ -2,6 +2,7 @@ package de.JeterLP.ChatManager.Plugins;
 
 import de.JeterLP.ChatManager.ChatEX;
 import de.JeterLP.ChatManager.HookManager;
+import de.JeterLP.ChatManager.Utils;
 import org.bukkit.entity.Player;
 
 /**
@@ -40,5 +41,15 @@ public class PluginManager implements PermissionsPlugin {
         @Override
         public String[] getGroupNames(Player p, String world) {
                 return handler.getGroupNames(p, world);
+        }
+
+        @Override
+        public String getMessageFormat(Player p) {
+                return Utils.getInstance().replaceColors(handler.getMessageFormat(p));
+        }
+
+        @Override
+        public String getGlobalMessageFormat(Player p) {
+                return Utils.getInstance().replaceColors(handler.getGlobalMessageFormat(p));
         }
 }

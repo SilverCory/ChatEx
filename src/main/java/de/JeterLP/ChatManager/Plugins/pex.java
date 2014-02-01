@@ -1,5 +1,6 @@
 package de.JeterLP.ChatManager.Plugins;
 
+import de.JeterLP.ChatManager.Config;
 import org.bukkit.entity.Player;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
@@ -10,6 +11,7 @@ public class pex implements PermissionsPlugin {
         @Override
         public String getPrefix(Player p, String world, boolean multiPrefixes, boolean PrependPlayerPrefix) {
                 PermissionUser user = PermissionsEx.getPermissionManager().getUser(p.getName());
+
                 if (user == null) {
                         return "";
                 }
@@ -80,5 +82,17 @@ public class pex implements PermissionsPlugin {
         @Override
         public String getName() {
                 return PermissionsEx.getPlugin().getDescription().getName();
+        }
+
+        @Override
+        public String getMessageFormat(Player p) {
+                PermissionUser user = PermissionsEx.getPermissionManager().getUser(p.getName());
+                return user.getOption(Config.FORMAT.getPath(), p.getWorld().getName(), Config.FORMAT.getString());
+        }
+
+        @Override
+        public String getGlobalMessageFormat(Player p) {
+                PermissionUser user = PermissionsEx.getPermissionManager().getUser(p.getName());
+                return user.getOption(Config.GLOBALFORMAT.getPath(), p.getWorld().getName(), Config.FORMAT.getString());
         }
 }

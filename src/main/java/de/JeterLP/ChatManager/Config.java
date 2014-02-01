@@ -67,7 +67,7 @@ public enum Config {
         public String getString() {
                 return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
         }
-
+        
         public static void load() {
                 ChatEX.getInstance().getDataFolder().mkdirs();
                 reload(false);

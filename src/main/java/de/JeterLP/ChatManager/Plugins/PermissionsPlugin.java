@@ -15,4 +15,8 @@ public interface PermissionsPlugin {
     public String getSuffix(Player p, String world, boolean multiSuffixes, boolean PrependPlayerSuffix);
 
     public String[] getGroupNames(Player p, String world);
+    
+    public String getMessageFormat(Player p);
+    
+    public String getGlobalMessageFormat(Player p);
 }
