@@ -31,15 +31,4 @@ public class HookManager {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx");
                 return plugin != null && plugin.isEnabled();
         }
-
-        public boolean checkMVCore() {
-                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
-                return plugin != null && plugin.isEnabled();
-        }
-
-        public boolean checkEssentials() {
-                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Essentials");
-                return plugin != null;
-        }
-
 }
