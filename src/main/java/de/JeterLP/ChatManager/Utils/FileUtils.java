@@ -1,5 +1,6 @@
-package de.JeterLP.ChatManager;
+package de.JeterLP.ChatManager.Utils;
 
+import de.JeterLP.ChatManager.ChatEX;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

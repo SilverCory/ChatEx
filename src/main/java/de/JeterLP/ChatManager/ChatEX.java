@@ -1,8 +1,11 @@
 package de.JeterLP.ChatManager;
 
-import de.JeterLP.ChatManager.Plugins.PermissionsPlugin;
+import de.JeterLP.ChatManager.Utils.Config;
+import de.JeterLP.ChatManager.Utils.Utils;
+import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
 
@@ -13,46 +16,45 @@ import org.mcstats.Metrics;
 public class ChatEX extends JavaPlugin {
 
         private static ChatEX instance;
-        private static PermissionsPlugin manager;
-        private Metrics m;
-        private AdvancedUpdater updater;
+        public static PluginManager manager;
 
         @Override
         public void onEnable() {
-                instance = this;
-                Config.load();
-                if (!Config.ENABLE.getBoolean()) {
+                try {
+                        instance = this;
+                        Config.load();
+                        if (!Config.ENABLE.getBoolean()) {
+                                getServer().getPluginManager().disablePlugin(this);
+                                getLogger().info("disabled, check config!");
+                                return;
+                        }
+                        saveResource("readme.txt", true);
+                        manager = new PluginManager();
+                        new Metrics(this).start();
+                        new AdvancedUpdater(this, 65863, "http://dev.bukkit.org/bukkit-plugins/chatex/").search();
+                        getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
+                        if (!Utils.registerListener()) {
+                                getServer().getPluginManager().disablePlugin(this);
+                        }
+                        getCommand("chatmanager").setExecutor(new ChatCommand());
+                        getLogger().info("is now enabled!");
+                } catch (MalformedURLException ex) {
+                        ex.printStackTrace();
+                } catch (IOException ioe) {
+                        ioe.printStackTrace();
+                } catch (Exception e) {
+                        e.printStackTrace();
                         getServer().getPluginManager().disablePlugin(this);
-                        getLogger().info("disabled, check config!");
-                        return;
                 }
-                try {
-                        m = new Metrics(this);
-                        m.start();
-                } catch (IOException ex) {
-                }
-                try {
-                        updater = new AdvancedUpdater(this, 65863, "http://dev.bukkit.org/bukkit-plugins/chatex/");
-                        updater.search();
-                } catch (Exception ex) {
-                }
-                manager = new PluginManager();
-                getLogger().info("Successfully hooked into: " + getManager().getName());
-                Utils.registerListener();
-                getCommand("chatmanager").setExecutor(new ChatManager_cmd());
-                getLogger().info("is now enabled!");
+
         }
 
         @Override
         public void onDisable() {
+                getServer().getScheduler().cancelTasks(this);
                 getLogger().info("is now disabled!");
         }
 
-        public static PermissionsPlugin getManager() {
-                return manager;
-        }
-
-       
         public static ChatEX getInstance() {
                 return instance;
         }

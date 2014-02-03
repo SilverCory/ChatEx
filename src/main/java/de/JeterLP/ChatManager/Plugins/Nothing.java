@@ -1,25 +1,25 @@
 package de.JeterLP.ChatManager.Plugins;
 
-import de.JeterLP.ChatManager.Config;
+import de.JeterLP.ChatManager.Utils.Config;
 import org.bukkit.entity.Player;
 
 /**
  * @author TheJeterLP
  */
-public class noPermPlugin implements PermissionsPlugin {
+public class Nothing implements PermissionsPlugin {
 
         @Override
-        public String getPrefix(Player p, String world, boolean multiPrefixes, boolean PrependPlayerPrefix) {
+        public String getPrefix(Player p) {
                 return "";
         }
 
         @Override
-        public String getSuffix(Player p, String world, boolean multiSuffixes, boolean PrependPlayerSuffix) {
+        public String getSuffix(Player p) {
                 return "";
         }
 
         @Override
-        public String[] getGroupNames(Player p, String world) {
+        public String[] getGroupNames(Player p) {
                 String[] data = {""};
                 return data;
         }

@@ -7,5 +7,6 @@ softdepend: [PermissionsEx,Vault,Factions,mcore]
 
 commands:
     chatmanager:
-        usage: /<command> reload|clearchat
+        usage: /<command> reload|clear
         description: Reloads ${project.name}
+        aliases: [chat]

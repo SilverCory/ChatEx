@@ -1,4 +1,4 @@
-package de.JeterLP.ChatManager;
+package de.JeterLP.ChatManager.Utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -19,11 +19,6 @@ public class HookManager {
 
         public boolean checkVault() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Vault");
-                return plugin != null && plugin.isEnabled();
-        }
-
-        public boolean checkFactions() {
-                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Factions");
                 return plugin != null && plugin.isEnabled();
         }
 

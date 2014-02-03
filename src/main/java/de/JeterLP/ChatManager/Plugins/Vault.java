@@ -1,7 +1,6 @@
 package de.JeterLP.ChatManager.Plugins;
 
-import de.JeterLP.ChatManager.ChatEX;
-import de.JeterLP.ChatManager.Config;
+import de.JeterLP.ChatManager.Utils.Config;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,18 +14,18 @@ public class Vault implements PermissionsPlugin {
         private static Chat chat = null;
 
         @Override
-        public String getPrefix(Player p, String world, boolean multiPrefixes, boolean PrependPlayerPrefix) {
-                return chat.getPlayerPrefix(world, p.getName());
+        public String getPrefix(Player p) {
+                return chat.getPlayerPrefix(p.getWorld(), p.getName());
         }
 
         @Override
-        public String getSuffix(Player p, String world, boolean multiSuffixes, boolean PrependPlayerSuffix) {
-                return chat.getPlayerSuffix(world, p.getName());
+        public String getSuffix(Player p) {
+                return chat.getPlayerSuffix(p.getWorld(), p.getName());
         }
 
         @Override
-        public String[] getGroupNames(Player p, String world) {
-                return chat.getPlayerGroups(world, p.getName());
+        public String[] getGroupNames(Player p) {
+                return chat.getPlayerGroups(p.getWorld(), p.getName());
         }
 
         @Override

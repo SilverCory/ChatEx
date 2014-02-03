@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 /**
  * @author TheJeterLP
  */
-public class ChatManager_cmd implements CommandExecutor {
+public class ChatCommand implements CommandExecutor {
 
         @Override
         public boolean onCommand(CommandSender cs, Command cmd, String string, String[] args) {
@@ -18,13 +18,18 @@ public class ChatManager_cmd implements CommandExecutor {
 
                 if (args[0].equalsIgnoreCase("reload")) {
                         if (!cs.hasPermission("chatmanager.reload")) {
-                                cs.sendMessage("§cYou don't have permission.");
+                                cs.sendMessage("§cYou don't have permission. §9(chatmanager.reload)");
                                 return true;
                         }
-                        Config.reload(false);
+                        Bukkit.getPluginManager().disablePlugin(ChatEX.getInstance());
+                        Bukkit.getPluginManager().enablePlugin(ChatEX.getInstance());
                         cs.sendMessage("§aConfig was reloaded.");
                         return true;
-                } else if (args[0].equalsIgnoreCase("clearchat")) {
+                } else if (args[0].equalsIgnoreCase("clear")) {
+                        if (!cs.hasPermission("chatmanager.clear")) {
+                                cs.sendMessage("§cYou don't have permission. §9(chatmanager.clear)");
+                                return true;
+                        }
                         for (int i = 0; i < 25; i++) {
                                 Bukkit.broadcastMessage("\n");
                         }
@@ -35,5 +40,4 @@ public class ChatManager_cmd implements CommandExecutor {
                         return true;
                 }
         }
-
 }

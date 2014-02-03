@@ -10,11 +10,11 @@ public interface PermissionsPlugin {
 
     public String getName();
 
-    public String getPrefix(Player p, String world, boolean multiPrefixes, boolean PrependPlayerPrefix);
+    public String getPrefix(Player p);
 
-    public String getSuffix(Player p, String world, boolean multiSuffixes, boolean PrependPlayerSuffix);
+    public String getSuffix(Player p);
 
-    public String[] getGroupNames(Player p, String world);
+    public String[] getGroupNames(Player p);
     
     public String getMessageFormat(Player p);
     

@@ -1,4 +1,4 @@
-package de.JeterLP.ChatManager;
+package de.JeterLP.ChatManager.Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
