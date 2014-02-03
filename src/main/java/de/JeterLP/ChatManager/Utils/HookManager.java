@@ -26,4 +26,9 @@ public class HookManager {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx");
                 return plugin != null && plugin.isEnabled();
         }
+        
+         public boolean checkBPerms() {
+                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("bPermissions");
+                return plugin != null && plugin.isEnabled();
+        }
 }

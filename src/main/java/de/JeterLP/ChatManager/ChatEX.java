@@ -1,5 +1,6 @@
 package de.JeterLP.ChatManager;
 
+import de.JeterLP.ChatManager.Plugins.PermissionsPlugin;
 import de.JeterLP.ChatManager.Utils.Config;
 import de.JeterLP.ChatManager.Utils.Utils;
 import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
@@ -13,7 +14,7 @@ import org.mcstats.Metrics;
 public class ChatEX extends JavaPlugin {
 
         private static ChatEX instance;
-        public static PluginManager manager;
+        private static PluginManager manager;
 
         @Override
         public void onEnable() {
@@ -50,5 +51,9 @@ public class ChatEX extends JavaPlugin {
 
         public static ChatEX getInstance() {
                 return instance;
+        }
+        
+        public static PermissionsPlugin getManager() {
+                return manager;
         }
 }

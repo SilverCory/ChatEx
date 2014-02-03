@@ -107,6 +107,12 @@
       <version>2.11.3</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>de.bananaco</groupId>
+      <artifactId>bPermissions</artifactId>
+      <version>2.9.4</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

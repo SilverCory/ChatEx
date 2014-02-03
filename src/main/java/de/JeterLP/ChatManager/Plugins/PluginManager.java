@@ -12,13 +12,15 @@ public class PluginManager implements PermissionsPlugin {
 
         private static PermissionsPlugin handler;
 
-        public static PluginManager getInstance() {
-                return ChatEX.manager;
+        public static PermissionsPlugin getInstance() {
+                return ChatEX.getManager();
         }
 
         public PluginManager() {
                 if (HookManager.getInstance().checkPEX()) {
                         handler = new PermissionsEx();
+                } else if(HookManager.getInstance().checkBPerms()) {
+                        handler = new bPermissions();
                 } else if (Vault.setupChat() && HookManager.getInstance().checkVault()) {
                         handler = new Vault();
                 } else {
