@@ -3,6 +3,8 @@ package de.JeterLP.ChatManager.Utils;
 import de.JeterLP.ChatManager.ChatEX;
 import de.JeterLP.ChatManager.ChatListener;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,6 +83,10 @@ public class Utils {
 
         private static String replaceTime(String message) {
                 Calendar calendar = Calendar.getInstance();
+                if (message.contains("%time")) {
+                        DateFormat date = new SimpleDateFormat("[HH:mm:ss] ");
+                        message = message.replace("time", date.format(calendar.getTime()));
+                }
                 if (message.contains("%h")) {
                         final String hour = String.valueOf(calendar.get(Calendar.HOUR));
                         message = message.replace("%h", hour);
@@ -164,7 +170,7 @@ public class Utils {
                 message = replaceColors(message);
                 return message;
         }
-   
+
         public static boolean registerListener() {
                 try {
                         String prio = Config.EVENTPRIORITY.getString();
