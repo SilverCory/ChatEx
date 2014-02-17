@@ -79,6 +79,6 @@ public class PermissionsEx implements PermissionsPlugin {
         @Override
         public String getGlobalMessageFormat(Player p) {
                 PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
-                return user.getOption(Config.GLOBALFORMAT.getPath(), p.getWorld().getName(), Config.FORMAT.getString());
+                return user.getOption(Config.GLOBALFORMAT.getPath(), p.getWorld().getName(), Config.GLOBALFORMAT.getString());
         }
 }
