@@ -65,7 +65,7 @@ public enum Config {
                 for (Config c : values()) {
                         header += c.getPath() + ": " + c.getDescription() + System.lineSeparator();
                         if (!cfg.contains(c.getPath())) {
-                                c.set(c.getDefaultValue());
+                                c.set(c.getDefaultValue(), false);
                         }
                 }
                 cfg.options().header(header);
@@ -76,14 +76,16 @@ public enum Config {
                 }
         }
 
-        public void set(Object value) {
+        public void set(Object value, boolean save) {
                 cfg.set(path, value);
-                try {
-                        cfg.save(f);
-                } catch (IOException ex) {
-                        ex.printStackTrace();
+                if (save) {
+                        try {
+                                cfg.save(f);
+                        } catch (IOException ex) {
+                                ex.printStackTrace();
+                        }
+                        reload(false);
                 }
-                reload(false);
         }
 
         public static void reload(boolean complete) {
