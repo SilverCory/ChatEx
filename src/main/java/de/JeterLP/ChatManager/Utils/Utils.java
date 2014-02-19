@@ -84,7 +84,7 @@ public class Utils {
         private static String replaceTime(String message) {
                 Calendar calendar = Calendar.getInstance();
                 if (message.contains("%time")) {
-                        DateFormat date = new SimpleDateFormat("[HH:mm:ss] ");
+                        DateFormat date = new SimpleDateFormat("HH:mm:ss");
                         message = message.replace("time", date.format(calendar.getTime()));
                 }
                 if (message.contains("%h")) {
