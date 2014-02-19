@@ -3,10 +3,10 @@ main: de.JeterLP.ChatManager.ChatEX
 version: ${project.version}
 author: TheJeterLP
 description: Chat management plugin
-softdepend: [PermissionsEx,Vault,Factions,mcore]
+softdepend: [PermissionsEx,Vault,bPermissions]
 
 commands:
-    chatmanager:
+    chatex:
         usage: /<command> reload|clear
         description: Reloads ${project.name}
         aliases: [chat]

@@ -17,7 +17,7 @@ public class ChatCommand implements CommandExecutor {
                 }
 
                 if (args[0].equalsIgnoreCase("reload")) {
-                        if (!cs.hasPermission("chatmanager.reload")) {
+                        if (!cs.hasPermission("chatex.reload")) {
                                 cs.sendMessage("§cYou don't have permission. §9(chatmanager.reload)");
                                 return true;
                         }
@@ -26,7 +26,7 @@ public class ChatCommand implements CommandExecutor {
                         cs.sendMessage("§aConfig was reloaded.");
                         return true;
                 } else if (args[0].equalsIgnoreCase("clear")) {
-                        if (!cs.hasPermission("chatmanager.clear")) {
+                        if (!cs.hasPermission("chatex.clear")) {
                                 cs.sendMessage("§cYou don't have permission. §9(chatmanager.clear)");
                                 return true;
                         }
