@@ -64,7 +64,6 @@ public enum Config {
                 reload(false);
                 String header = "";
                 for (Config c : values()) {
-                        ChatEX.debug("Loading config value " + c.getPath());
                         header += c.getPath() + ": " + c.getDescription() + System.lineSeparator();
                         if (!cfg.contains(c.getPath())) {
                                 c.set(c.getDefaultValue(), false);

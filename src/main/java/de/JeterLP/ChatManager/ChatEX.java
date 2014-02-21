@@ -21,10 +21,9 @@ public class ChatEX extends JavaPlugin {
         @Override
         public void onEnable() {
                 try {
-                        debug("Setting instance");
                         instance = this;
-                        debug("Loading Config");
                         Config.load();
+                        debug("Loaded Config!");
                         if (!Config.ENABLE.getBoolean()) {
                                 getServer().getPluginManager().disablePlugin(this);
                                 getLogger().info("disabled, check config!");
@@ -61,13 +60,13 @@ public class ChatEX extends JavaPlugin {
         public static ChatEX getInstance() {
                 return instance;
         }
-        
+
         public static PermissionsPlugin getManager() {
                 return manager;
         }
-        
+
         public static void debug(String message) {
-                if(!Config.DEBUG.getBoolean()) return;
+                if (!Config.DEBUG.getBoolean()) return;
                 String output = "[DEBUG] " + message;
                 getInstance().getLogger().log(Level.FINE, output);
         }
