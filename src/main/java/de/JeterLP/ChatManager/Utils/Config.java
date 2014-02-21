@@ -90,7 +90,6 @@ public enum Config {
         }
 
         public static void reload(boolean complete) {
-                ChatEX.debug("reloading config. Complete: " + complete);
                 if (!complete) {
                         cfg = YamlConfiguration.loadConfiguration(f);
                         return;
