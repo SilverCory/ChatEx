@@ -68,6 +68,6 @@ public class ChatEX extends JavaPlugin {
         public static void debug(String message) {
                 if (!Config.DEBUG.getBoolean()) return;
                 String output = "[DEBUG] " + message;
-                getInstance().getLogger().log(Level.FINE, output);
+                getInstance().getLogger().log(Level.INFO, output);
         }
 }
