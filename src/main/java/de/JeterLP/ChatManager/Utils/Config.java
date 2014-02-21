@@ -12,15 +12,16 @@ import org.bukkit.event.EventPriority;
 public enum Config {
 
         ENABLE("enable", true, "Should the plugin be enabled?"),
-        FORMAT("message-format", "%prefix%player%suffix: %message", "The standard message-format"),
+        FORMAT("message-format", "%prefix%player%suffix: %message", "The standard message-format."),
         GLOBALFORMAT("global-message-format", "&9[%world] %prefix%player%suffix: &e%message", "The message-format if ranged-mode is enabled."),
         RANGEMODE("ranged-mode", false, "Should the ranged-mode be enabled?"),
-        RANGE("chat-range", 100.0, "The range to talk to other players"),
+        RANGE("chat-range", 100.0, "The range to talk to other players."),
         MULTIPREFIXES("multi-prefixes", false, "Should the multi-prefixes be enabled? See readme.txt for more info."),
         MULTISUFFIXES("multi-suffixes", false, "Should the multi-suffixes be enabled? See readme.txt for more info."),
         LOGCHAT("logChat", true, "Should the chat be logged?"),
         EVENTPRIORITY("Priority", EventPriority.LOWEST.toString(), "EventPriority for the ChatListener. See readme.txt for more info."),
-        UPDATE("SearchForUpdates", true, "Should the Plugin search for new Versions?");
+        UPDATE("SearchForUpdates", true, "Should the Plugin search for new Versions?"),
+        DEBUG("Debug", false, "Enables debug mode. Enable this if you get a bug.");
 
         private final Object value;
         private final String path;
@@ -63,6 +64,7 @@ public enum Config {
                 reload(false);
                 String header = "";
                 for (Config c : values()) {
+                        ChatEX.debug("Loading config value " + c.getPath());
                         header += c.getPath() + ": " + c.getDescription() + System.lineSeparator();
                         if (!cfg.contains(c.getPath())) {
                                 c.set(c.getDefaultValue(), false);
@@ -89,6 +91,7 @@ public enum Config {
         }
 
         public static void reload(boolean complete) {
+                ChatEX.debug("reloading config. Complete: " + complete);
                 if (!complete) {
                         cfg = YamlConfiguration.loadConfiguration(f);
                         return;

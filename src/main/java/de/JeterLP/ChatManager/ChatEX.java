@@ -5,6 +5,8 @@ import de.JeterLP.ChatManager.Utils.Config;
 import de.JeterLP.ChatManager.Utils.Utils;
 import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
+import de.JeterLP.ChatManager.Utils.Manager;
+import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
 
@@ -19,23 +21,30 @@ public class ChatEX extends JavaPlugin {
         @Override
         public void onEnable() {
                 try {
+                        debug("Setting instance");
                         instance = this;
+                        debug("Loading Config");
                         Config.load();
                         if (!Config.ENABLE.getBoolean()) {
                                 getServer().getPluginManager().disablePlugin(this);
                                 getLogger().info("disabled, check config!");
                                 return;
                         }
+                        debug("Saving readme.txt to " + getDataFolder().getAbsolutePath());
                         saveResource("readme.txt", true);
                         manager = new PluginManager();
+                        debug("Starting Metrics/MCStats...");
                         new Metrics(this).start();
+                        debug("Starting updater...");
                         new AdvancedUpdater(this, 65863, "http://dev.bukkit.org/bukkit-plugins/chatex/").search();
                         getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
+                        debug("registering Listener...");
                         if (!Utils.registerListener()) {
                                 getLogger().severe("No valid Listener could be found. Please see the reamde.txt for more information.");
                                 getServer().getPluginManager().disablePlugin(this);
-                        }
-                        getCommand("chatex").setExecutor(new ChatCommand());
+                                return;
+                        };
+                        Manager.registerCommand(ChatExCommand.class);
                         getLogger().info("is now enabled!");
                 } catch (Exception e) {
                         e.printStackTrace();
@@ -55,5 +64,11 @@ public class ChatEX extends JavaPlugin {
         
         public static PermissionsPlugin getManager() {
                 return manager;
+        }
+        
+        public static void debug(String message) {
+                if(!Config.DEBUG.getBoolean()) return;
+                String output = "[DEBUG] " + message;
+                getInstance().getLogger().log(Level.FINE, output);
         }
 }

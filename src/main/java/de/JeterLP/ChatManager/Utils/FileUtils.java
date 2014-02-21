@@ -36,13 +36,13 @@ public class FileUtils {
                 }
         }
 
-        public static String fileName() {
+        private static String fileName() {
                 DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
                 Calendar cal = Calendar.getInstance();
                 return date.format(cal.getTime()) + ".log";
         }
 
-        public static String prefix() {
+        private static String prefix() {
                 DateFormat date = new SimpleDateFormat("[HH:mm:ss] ");
                 Calendar cal = Calendar.getInstance();
                 return date.format(cal.getTime());

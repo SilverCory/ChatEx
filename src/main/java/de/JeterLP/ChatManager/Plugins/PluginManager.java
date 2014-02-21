@@ -17,6 +17,7 @@ public class PluginManager implements PermissionsPlugin {
         }
 
         public PluginManager() {
+                ChatEX.debug("Checking for Plugins...");
                 if (HookManager.getInstance().checkPEX()) {
                         handler = new PermissionsEx();
                 } else if(HookManager.getInstance().checkBPerms()) {
@@ -26,35 +27,42 @@ public class PluginManager implements PermissionsPlugin {
                 } else {
                         handler = new Nothing();
                 }
+                ChatEX.debug("Plugin found!");
         }
 
         @Override
         public String getName() {
+                ChatEX.debug("Getting name of plugin...");
                 return handler.getName();
         }
 
         @Override
         public String getPrefix(Player p) {
+                ChatEX.debug("Getting prefix from " + p.getName());
                 return handler.getPrefix(p);
         }
 
         @Override
         public String getSuffix(Player p) {
+                ChatEX.debug("Getting suffix from " + p.getName());
                 return handler.getSuffix(p);
         }
 
         @Override
         public String[] getGroupNames(Player p) {
+                ChatEX.debug("Getting groups from " + p.getName());
                 return handler.getGroupNames(p);
         }
 
         @Override
         public String getMessageFormat(Player p) {
+                ChatEX.debug("Getting message-format from " + p.getName());
                 return Utils.replaceColors(handler.getMessageFormat(p));
         }
 
         @Override
         public String getGlobalMessageFormat(Player p) {
+                ChatEX.debug("Getting global message-format from " + p.getName());
                 return Utils.replaceColors(handler.getGlobalMessageFormat(p));
         }
 }
