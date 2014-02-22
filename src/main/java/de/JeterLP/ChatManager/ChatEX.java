@@ -42,10 +42,11 @@ public class ChatEX extends JavaPlugin {
                                 getLogger().severe("No valid Listener could be found. Please see the reamde.txt for more information.");
                                 getServer().getPluginManager().disablePlugin(this);
                                 return;
-                        };
+                        }
                         Manager.registerCommand(ChatExCommand.class);
                         getLogger().info("is now enabled!");
                 } catch (Exception e) {
+                        getServer().getPluginManager().disablePlugin(this);
                         e.printStackTrace();
                 }
 

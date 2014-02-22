@@ -1,7 +1,6 @@
 package de.JeterLP.ChatManager.Utils;
 
 import de.JeterLP.ChatManager.ChatEX;
-import de.JeterLP.ChatManager.ChatListener;
 
 /**
  * @author TheJeterLP
@@ -21,18 +20,6 @@ public class Manager {
                         } else {
                                 ChatEX.getInstance().getLogger().severe("BukkitCommand is null or empty! Check " + clazz.getName());
                         }
-                } catch (Exception ex) {
-                        ex.printStackTrace();
-                }
-        }
-
-        public static void registerListener(Class<? extends ChatListener> clazz) {
-                ChatEX.debug("Starting registering listener: " + clazz.getName());
-                try {
-                        ChatEX.debug("Making new instance of the listener...");
-                        ChatListener listener = clazz.newInstance();
-                        ChatEX.debug("Registering listener...");
-                        listener.register();
                 } catch (Exception ex) {
                         ex.printStackTrace();
                 }

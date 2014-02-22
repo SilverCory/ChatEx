@@ -85,7 +85,7 @@ public class Utils {
                 Calendar calendar = Calendar.getInstance();
                 if (message.contains("%time")) {
                         DateFormat date = new SimpleDateFormat("HH:mm:ss");
-                        message = message.replace("time", date.format(calendar.getTime()));
+                        message = message.replace("%time", date.format(calendar.getTime()));
                 }
                 if (message.contains("%h")) {
                         final String hour = String.valueOf(calendar.get(Calendar.HOUR));
