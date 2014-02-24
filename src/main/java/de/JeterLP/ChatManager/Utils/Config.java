@@ -21,7 +21,8 @@ public enum Config {
         LOGCHAT("logChat", true, "Should the chat be logged?"),
         EVENTPRIORITY("Priority", EventPriority.LOWEST.toString(), "EventPriority for the ChatListener. See readme.txt for more info."),
         UPDATE("SearchForUpdates", true, "Should the Plugin search for new Versions?"),
-        DEBUG("Debug", false, "Enables debug mode. Enable this if you get a bug.");
+        DEBUG("Debug", false, "Enables debug mode. Enable this if you get a bug."),
+        LOCALE("Locale", "en-EN", "Which language do you want?");
 
         private final Object value;
         private final String path;

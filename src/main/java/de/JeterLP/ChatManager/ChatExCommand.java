@@ -1,9 +1,6 @@
 package de.JeterLP.ChatManager;
 
-import de.JeterLP.ChatManager.Utils.CommandArgs;
-import de.JeterLP.ChatManager.Utils.CommandHelp;
-import de.JeterLP.ChatManager.Utils.CommandResult;
-import de.JeterLP.ChatManager.Utils.Executor;
+import de.JeterLP.ChatManager.Utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
@@ -19,8 +16,8 @@ public class ChatExCommand extends Executor {
         public ChatExCommand() {
                 command = "chatex";
                 permission = "chatex.mod";
-                helpPages.add(new CommandHelp("/chatex reload", "Reloads the plugin and its configuration."));
-                helpPages.add(new CommandHelp("/chatex clear", "Clears the chat."));
+                helpPages.add(new CommandHelp("/chatex reload", Locales.COMMAND_RELOAD_DESCRIPTION.getString()));
+                helpPages.add(new CommandHelp("/chatex clear", Locales.COMMAND_CLEAR_DESCRIPTION.getString()));
         }
 
         @Override
@@ -35,19 +32,19 @@ public class ChatExCommand extends Executor {
                 if (args.getString(0).equalsIgnoreCase("reload")) {
                         Bukkit.getPluginManager().disablePlugin(ChatEX.getInstance());
                         Bukkit.getPluginManager().enablePlugin(ChatEX.getInstance());
-                        sender.sendMessage("§aConfig was reloaded.");
+                        sender.sendMessage(Locales.MESSAGES_RELOAD.getString());
                         return CommandResult.SUCCESS;
                 } else if (args.getString(0).equalsIgnoreCase("clear")) {
                         for (int i = 0; i < 25; i++) {
                                 Bukkit.broadcastMessage("\n");
                         }
-                        String who = "unknown";
+                        String who = Locales.COMMAND_CLEAR_UNKNOWN.getString();
                         if ((sender instanceof ConsoleCommandSender) || (sender instanceof BlockCommandSender)) {
-                                who = "CONSOLE";
+                                who = Locales.COMMAND_CLEAR_CONSOLE.getString();
                         } else if (sender instanceof Player) {
                                 who = sender.getName();
                         }
-                        Bukkit.broadcastMessage("§aChat has been cleared by " + who);
+                        Bukkit.broadcastMessage(Locales.MESSAGES_CLEAR.getString() + who);
                         return CommandResult.SUCCESS;
                 } else {
                         return CommandResult.ERROR;

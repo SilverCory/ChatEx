@@ -5,7 +5,8 @@ import de.JeterLP.ChatManager.Utils.Config;
 import de.JeterLP.ChatManager.Utils.Utils;
 import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
-import de.JeterLP.ChatManager.Utils.Manager;
+import de.JeterLP.ChatManager.Utils.*;
+import java.io.File;
 import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
@@ -29,8 +30,11 @@ public class ChatEX extends JavaPlugin {
                                 getLogger().info("disabled, check config!");
                                 return;
                         }
-                        debug("Saving readme.txt to " + getDataFolder().getAbsolutePath());
-                        saveResource("readme.txt", true);
+                        Locales.load();
+                        if (!new File(getDataFolder(), Config.LOCALE.getString() + "_readme.txt").exists()) {
+                                debug("Saving readme to " + getDataFolder().getAbsolutePath());
+                                saveResource(Config.LOCALE.getString() + "_readme.txt", true);
+                        }
                         manager = new PluginManager();
                         debug("Starting Metrics/MCStats...");
                         new Metrics(this).start();

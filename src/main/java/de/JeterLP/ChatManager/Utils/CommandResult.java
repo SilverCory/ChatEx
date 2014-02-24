@@ -1,23 +1,21 @@
 package de.JeterLP.ChatManager.Utils;
 
-import org.bukkit.ChatColor;
-
 /**
  * @author TheJeterLP
  */
 public enum CommandResult {
 
-      SUCCESS(null),
-      NO_PERMISSION(ChatColor.DARK_RED + "[ERROR] " + ChatColor.GRAY + "You don't have permission for this! " + ChatColor.RED + "(%perm%)"),
-      ERROR(ChatColor.RED + "[ERROR] " + ChatColor.GRAY + "Wrong usage! Please type " + ChatColor.GOLD + "/%cmd% help " + ChatColor.GRAY + "!");
-      private final String msg;
+        SUCCESS(null),
+        NO_PERMISSION(Locales.COMMAND_RESULT_NO_PERM.getPath()),
+        ERROR(Locales.COMMAND_RESULT_WRONG_USAGE.getPath());
+        private final String msg;
 
-      CommandResult(String msg) {
-          this.msg = msg;
-      }
+        CommandResult(String msg) {
+                this.msg = msg;
+        }
 
-      public String getMessage() {
-          return this.msg;
-      }
-} 
-
+        public String getMessage() {
+                if (msg == null) return null;
+                return Locales.fromPath(msg).getString();
+        }
+}
