@@ -5,7 +5,7 @@
     <artifactId>ChatEx</artifactId>
     <name>ChatEx</name>
     <inceptionYear>2013</inceptionYear>
-    <description></description>   
+    <description>ChatManagement plugin for Bukkit</description>   
     <build>
         <defaultGoal>clean install</defaultGoal>
         <finalName>${project.name}</finalName>
@@ -47,7 +47,8 @@
                 <targetPath>.</targetPath>
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
-                <includes>                   
+                <includes>        
+                    <include>/locales/</include>           
                     <include>**/*.yml</include>
                     <include>**/*.txt</include>
                 </includes>
@@ -89,16 +90,6 @@
             <version>1.19.4</version>
         </dependency>
         <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>mcore</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>factions</artifactId>
-            <version>1.0.0</version>
-        </dependency>   
-        <dependency>
             <groupId>me.zford</groupId>
             <artifactId>jobs</artifactId>
             <version>2.11.3</version>
@@ -118,5 +109,5 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <version>1.0.10</version>
+    <version>1.0.10-SNAPSHOT</version>
 </project>

@@ -1,7 +1,7 @@
 package de.JeterLP.ChatManager;
 
 import de.JeterLP.ChatManager.Utils.Config;
-import de.JeterLP.ChatManager.Utils.FileUtils;
+import de.JeterLP.ChatManager.Utils.ChatLogger;
 import de.JeterLP.ChatManager.Utils.Utils;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import org.bukkit.Bukkit;
@@ -46,7 +46,7 @@ public abstract class ChatListener implements Listener {
                 ChatEX.debug("Setting message!");
                 event.setMessage(chatMessage);
                 ChatEX.debug("Logging chatmessage...");
-                FileUtils.writeToFile(event.getPlayer().getName(), event.getMessage());
+                ChatLogger.writeToFile(event.getPlayer().getName(), event.getMessage());
         }
 
 }

@@ -22,7 +22,7 @@ public enum Config {
         EVENTPRIORITY("Priority", EventPriority.LOWEST.toString(), "EventPriority for the ChatListener. See readme.txt for more info."),
         UPDATE("SearchForUpdates", true, "Should the Plugin search for new Versions?"),
         DEBUG("Debug", false, "Enables debug mode. Enable this if you get a bug."),
-        LOCALE("Locale", "en-EN", "Which language do you want?");
+        LOCALE("Locale", "en-EN", "Which language do you want? (You can choose betwenn de-DE, en-EN and ru-RU by default.)");
 
         private final Object value;
         private final String path;

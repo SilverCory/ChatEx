@@ -3,6 +3,7 @@ package de.JeterLP.ChatManager.Utils;
 import de.JeterLP.ChatManager.ChatEX;
 import java.io.File;
 import java.io.IOException;
+import net.minecraft.util.org.apache.commons.io.FileUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
@@ -42,22 +43,31 @@ public enum Locales {
                 return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
         }
 
-        public static void load() {
+        public static void load() throws IOException {
                 localeFolder.mkdirs();
-                reload(false);
-                for (Locales c : values()) {
-                        if (!cfg.contains(c.getPath())) {
-                                c.set(c.getDefaultValue(), false);
+                if (!f.exists()) {
+                        ChatEX.getInstance().saveResource("locales" + File.separator + Config.LOCALE.getString() + ".yml", true);
+                        File locale = new File(ChatEX.getInstance().getDataFolder(), Config.LOCALE.getString() + ".yml");
+                        if (locale.exists()) {
+                                FileUtils.moveFile(locale, f);
                         }
-                }
-                try {
-                        cfg.save(f);
-                } catch (IOException ex) {
-                        ex.printStackTrace();
+                        reload(false);
+                } else {
+                        reload(false);
+                        for (Locales c : values()) {
+                                if (!cfg.contains(c.getPath())) {
+                                        c.set(c.getDefaultValue(), false);
+                                }
+                        }
+                        try {
+                                cfg.save(f);
+                        } catch (IOException ex) {
+                                ex.printStackTrace();
+                        }
                 }
         }
 
-        public void set(Object value, boolean save) {
+        public void set(Object value, boolean save) throws IOException {
                 cfg.set(path, value);
                 if (save) {
                         try {
@@ -69,7 +79,7 @@ public enum Locales {
                 }
         }
 
-        public static void reload(boolean complete) {
+        public static void reload(boolean complete) throws IOException {
                 if (!complete) {
                         cfg = YamlConfiguration.loadConfiguration(f);
                         return;

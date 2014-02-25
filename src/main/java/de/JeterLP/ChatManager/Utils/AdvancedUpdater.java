@@ -27,7 +27,7 @@ public class AdvancedUpdater {
         public AdvancedUpdater(JavaPlugin main, int id, String link) throws MalformedURLException {
                 this.main = main;
                 this.id = id;
-                this.version = Integer.valueOf(main.getDescription().getVersion().replaceAll("\\.", ""));
+                this.version = Integer.valueOf(main.getDescription().getVersion().replaceAll("\\.", "").replaceAll("-SNAPSHOT", ""));
                 this.link = link;
                 this.url = new URL("https://api.curseforge.com/servermods/files?projectIds=" + this.id);
         }

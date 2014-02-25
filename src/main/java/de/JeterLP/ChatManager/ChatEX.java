@@ -33,8 +33,8 @@ public class ChatEX extends JavaPlugin {
                         Locales.load();
                         if (!new File(getDataFolder(), Config.LOCALE.getString() + "_readme.txt").exists()) {
                                 debug("Saving readme to " + getDataFolder().getAbsolutePath());
-                                saveResource(Config.LOCALE.getString() + "_readme.txt", true);
-                        }
+                                saveResource("locales" + File.separator + Config.LOCALE.getString() + "_readme.txt", true);
+                        }                        
                         manager = new PluginManager();
                         debug("Starting Metrics/MCStats...");
                         new Metrics(this).start();

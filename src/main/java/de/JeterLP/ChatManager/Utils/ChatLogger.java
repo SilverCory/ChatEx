@@ -11,7 +11,7 @@ import java.util.Calendar;
 /**
  * @author TheJeterLP
  */
-public class FileUtils {
+public class ChatLogger {
 
         public static void writeToFile(String player, String message) {
                 if (!Config.LOGCHAT.getBoolean()) return;

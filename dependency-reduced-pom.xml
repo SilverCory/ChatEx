@@ -4,7 +4,8 @@
   <groupId>de.JeterLP</groupId>
   <artifactId>ChatEx</artifactId>
   <name>ChatEx</name>
-  <version>1.0.10</version>
+  <version>1.0.10-SNAPSHOT</version>
+  <description>ChatManagement plugin for Bukkit</description>
   <inceptionYear>2013</inceptionYear>
   <build>
     <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
@@ -15,6 +16,7 @@
         <filtering>true</filtering>
         <directory>${basedir}/src/main/resources/</directory>
         <includes>
+          <include>/locales/</include>
           <include>**/*.yml</include>
           <include>**/*.txt</include>
         </includes>
@@ -87,18 +89,6 @@
       <groupId>ru.tehkode</groupId>
       <artifactId>PermissionsEx</artifactId>
       <version>1.19.4</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.massivecraft</groupId>
-      <artifactId>mcore</artifactId>
-      <version>1.0.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.massivecraft</groupId>
-      <artifactId>factions</artifactId>
-      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

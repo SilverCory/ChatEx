@@ -1,0 +1,16 @@
+Commands:
+  Reload:
+    Description: Lädt das Plugin und seine Konfiguration neu.
+  Clear:
+    Description: Leert den Chat.
+    Console: KONSOLE
+    Unknown: UNBEKANNT
+Messages:
+  Commands:
+    Reload:
+      Success: '&aChatEx wurde neugeladen.'
+    Clear:
+      Success: '&aDer Chat wurde geleert von '
+  CommandResult:
+    NoPermission: '&4[FEHLER] &Dafür hast du nicht die nötigen Rechte! &c(%perm%)'
+    WrongUsage: '&c[FEHLER] &7Falsche Benutzung! Benutze &6/%cmd% help&7!'
