@@ -32,5 +32,6 @@ If you now have a special prefix only for you, it will be added to the prefix in
 Special thanks to: 
 - PikachuEXE for making the Multi-prefixes/suffixes feature.
 - t3hk0d3 for creating the old version of chatmanager.
+- MySt1k quality translation for this plugin into Russian.
 
 
