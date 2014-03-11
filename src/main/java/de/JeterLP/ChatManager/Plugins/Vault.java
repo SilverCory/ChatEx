@@ -15,12 +15,32 @@ public class Vault implements PermissionsPlugin {
 
         @Override
         public String getPrefix(Player p) {
-                return chat.getPlayerPrefix(p.getWorld(), p.getName());
+                if (!Config.MULTIPREFIXES.getBoolean()) {
+                        return chat.getPlayerPrefix(p.getWorld(), p.getName());
+                }
+                String finalPrefix = "";
+                for (String group : chat.getPlayerGroups(p)) {
+                        String groupPrefix = chat.getGroupPrefix(p.getWorld(), group);
+                        if (groupPrefix != null && !groupPrefix.isEmpty()) {
+                                finalPrefix += groupPrefix;
+                        }
+                }
+                return finalPrefix;
         }
 
         @Override
         public String getSuffix(Player p) {
-                return chat.getPlayerSuffix(p.getWorld(), p.getName());
+                 if (!Config.MULTIPREFIXES.getBoolean()) {
+                        return chat.getPlayerSuffix(p.getWorld(), p.getName());
+                }
+                String finalSuffix = "";
+                for (String group : chat.getPlayerGroups(p)) {
+                        String groupSuffix = chat.getGroupSuffix(p.getWorld(), group);
+                        if (groupSuffix != null && !groupSuffix.isEmpty()) {
+                                finalSuffix += groupSuffix;
+                        }
+                }
+                return finalSuffix;
         }
 
         @Override

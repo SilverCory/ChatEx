@@ -17,12 +17,34 @@ public class bPermissions implements PermissionsPlugin {
 
         @Override
         public String getPrefix(Player p) {
-                return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "prefix");
+                if (!Config.MULTIPREFIXES.getBoolean()) {
+                        return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "prefix");
+                }
+                String finalPrefix = "";
+                String[] groups = ApiLayer.getGroups(p.getWorld().getName(), CalculableType.USER, p.getName());
+                for (String group : groups) {
+                        String groupPrefix = ApiLayer.getValue(p.getWorld().getName(), CalculableType.GROUP, group, "prefix");
+                        if (groupPrefix != null && !groupPrefix.isEmpty()) {
+                                finalPrefix += groupPrefix;
+                        }
+                }
+                return finalPrefix;
         }
 
         @Override
         public String getSuffix(Player p) {
-                return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "suffix");
+                if (!Config.MULTIPREFIXES.getBoolean()) {
+                        return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "suffix");
+                }
+                String finalSuffix = "";
+                String[] groups = ApiLayer.getGroups(p.getWorld().getName(), CalculableType.USER, p.getName());
+                for (String group : groups) {
+                        String groupSuffix = ApiLayer.getValue(p.getWorld().getName(), CalculableType.GROUP, group, "suffix");
+                        if (groupSuffix != null && !groupSuffix.isEmpty()) {
+                                finalSuffix += groupSuffix;
+                        }
+                }
+                return finalSuffix;
         }
 
         @Override
