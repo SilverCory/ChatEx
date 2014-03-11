@@ -47,16 +47,30 @@ public enum Locales {
         public void send(CommandSender s) {
                 s.sendMessage(getString());
         }
-       
+
         public static void load() throws IOException {
                 localeFolder.mkdirs();
                 if (!f.exists()) {
-                        ChatEX.getInstance().saveResource("locales" + File.separator + Config.LOCALE.getString() + ".yml", true);
-                        File locale = new File(ChatEX.getInstance().getDataFolder(), Config.LOCALE.getString() + ".yml");
-                        if (locale.exists()) {
-                                FileUtils.moveFile(locale, f);
+                        try {
+                                ChatEX.getInstance().saveResource("locales" + File.separator + Config.LOCALE.getString() + ".yml", true);
+                                File locale = new File(ChatEX.getInstance().getDataFolder(), Config.LOCALE.getString() + ".yml");
+                                if (locale.exists()) {
+                                        FileUtils.moveFile(locale, f);
+                                }
+                                reload(false);
+                        } catch (IllegalArgumentException ex) {
+                                reload(false);
+                                for (Locales c : values()) {
+                                        if (!cfg.contains(c.getPath())) {
+                                                c.set(c.getDefaultValue(), false);
+                                        }
+                                }
+                                try {
+                                        cfg.save(f);
+                                } catch (IOException ioex) {
+                                        ioex.printStackTrace();
+                                }
                         }
-                        reload(false);
                 } else {
                         reload(false);
                         for (Locales c : values()) {
