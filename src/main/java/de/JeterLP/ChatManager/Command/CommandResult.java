@@ -1,4 +1,6 @@
-package de.JeterLP.ChatManager.Utils;
+package de.JeterLP.ChatManager.Command;
+
+import de.JeterLP.ChatManager.Utils.Locales;
 
 /**
  * @author TheJeterLP

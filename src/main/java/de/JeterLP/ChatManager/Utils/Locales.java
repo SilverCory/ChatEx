@@ -4,6 +4,7 @@ import de.JeterLP.ChatManager.ChatEX;
 import java.io.File;
 import java.io.IOException;
 import net.minecraft.util.org.apache.commons.io.FileUtils;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
@@ -17,7 +18,7 @@ public enum Locales {
         COMMAND_CLEAR_UNKNOWN("Commands.Clear.Unknown", "UNKNOWN"),
         MESSAGES_RELOAD("Messages.Commands.Reload.Success", "&aConfig was reloaded."),
         MESSAGES_CLEAR("Messages.Commands.Clear.Success", "&aThe chat has been cleared by "),
-        COMMAND_RESULT_NO_PERM("Messages.CommandResult.NoPermission", "&4[ERROR] &You don't have permission for this! &c(%perm%)"),
+        COMMAND_RESULT_NO_PERM("Messages.CommandResult.NoPermission", "&4[ERROR] &7You don't have permission for this! &c(%perm%)"),
         COMMAND_RESULT_WRONG_USAGE("Messages.CommandResult.WrongUsage", "&c[ERROR] &7Wrong usage! Please type &6/%cmd% help&7!");
 
         private final String value;
@@ -43,6 +44,10 @@ public enum Locales {
                 return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
         }
 
+        public void send(CommandSender s) {
+                s.sendMessage(getString());
+        }
+       
         public static void load() throws IOException {
                 localeFolder.mkdirs();
                 if (!f.exists()) {

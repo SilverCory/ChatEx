@@ -1,5 +1,9 @@
 package de.JeterLP.ChatManager;
 
+import de.JeterLP.ChatManager.Command.CommandArgs;
+import de.JeterLP.ChatManager.Command.CommandHelp;
+import de.JeterLP.ChatManager.Command.Executor;
+import de.JeterLP.ChatManager.Command.CommandResult;
 import de.JeterLP.ChatManager.Utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;

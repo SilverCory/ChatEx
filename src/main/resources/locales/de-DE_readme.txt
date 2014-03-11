@@ -33,5 +33,6 @@ Dann wäre dein Prefix: '&4Owner &9Moderator '.
 Vielen Dank an: 
 - PikachuEXE, weil er das Multi-prefixes/suffixes feature gemacht hat.
 - t3hk0d3,weil er die ursprüngliche Version von ChatManager gemacht hat.
+- MySt1k für die Russische Übersetzung.
 
 

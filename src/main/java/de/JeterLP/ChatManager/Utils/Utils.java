@@ -1,5 +1,7 @@
 package de.JeterLP.ChatManager.Utils;
 
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.UPlayer;
 import de.JeterLP.ChatManager.ChatEX;
 import de.JeterLP.ChatManager.ChatListener;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
@@ -77,6 +79,7 @@ public class Utils {
                 result = result.replace("%world", player.getWorld().getName());
                 result = result.replace("%group", PluginManager.getInstance().getGroupNames(player)[0]);
                 result = replaceTime(result);
+                result = replaceFaction(player, result);
                 result = replaceColors(result);
                 return result;
         }
@@ -119,28 +122,43 @@ public class Utils {
                         switch (monat) {
                                 case 1:
                                         month = "January";
+                                        break;
                                 case 2:
                                         month = "February";
+                                        break;
                                 case 3:
                                         month = "March";
+                                        break;
                                 case 4:
                                         month = "April";
+                                        break;
                                 case 5:
                                         month = "May";
+                                        break;
                                 case 6:
                                         month = "June";
+                                        break;
                                 case 7:
                                         month = "July";
+                                        break;
                                 case 8:
                                         month = "August";
+                                        break;
                                 case 9:
                                         month = "September";
+                                        break;
                                 case 10:
                                         month = "October";
+                                        break;
                                 case 11:
                                         month = "November";
+                                        break;
                                 case 12:
                                         month = "December";
+                                        break;
+                                default:
+                                        month = Locales.COMMAND_CLEAR_UNKNOWN.getString();
+                                        break;
                         }
                         message = message.replace("%M", month);
                 }
@@ -188,5 +206,14 @@ public class Utils {
                         ex.printStackTrace();
                         return false;
                 }
+        }
+
+        public static String replaceFaction(Player player, String msg) {
+                if (!HookManager.checkFactions()) {
+                        return msg.replace("%faction", "");
+                }
+                final UPlayer uplayer = UPlayer.get(player);
+                final Faction faction = uplayer.getFaction();
+                return msg.replace("%faction", faction.getName());
         }
 }

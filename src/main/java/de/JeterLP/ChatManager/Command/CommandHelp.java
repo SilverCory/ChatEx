@@ -1,4 +1,4 @@
-package de.JeterLP.ChatManager.Utils;
+package de.JeterLP.ChatManager.Command;
 
 import org.bukkit.ChatColor;
 

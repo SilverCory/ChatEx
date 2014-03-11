@@ -1,4 +1,4 @@
-package de.JeterLP.ChatManager.Utils;
+package de.JeterLP.ChatManager.Command;
 
 import de.JeterLP.ChatManager.ChatEX;
 import java.util.ArrayList;

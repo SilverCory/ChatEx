@@ -1,5 +1,6 @@
 package de.JeterLP.ChatManager.Utils;
 
+import de.JeterLP.ChatManager.Command.Executor;
 import de.JeterLP.ChatManager.ChatEX;
 
 /**

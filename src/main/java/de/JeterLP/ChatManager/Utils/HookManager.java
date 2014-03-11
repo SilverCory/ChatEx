@@ -8,27 +8,23 @@ import org.bukkit.plugin.Plugin;
  */
 public class HookManager {
 
-        private static final HookManager INSTANCE = new HookManager();
-
-        private HookManager() {
-        }
-
-        public static HookManager getInstance() {
-                return INSTANCE;
-        }
-
-        public boolean checkVault() {
+        public static boolean checkVault() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Vault");
                 return plugin != null && plugin.isEnabled();
         }
 
-        public boolean checkPEX() {
+        public static boolean checkPEX() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx");
                 return plugin != null && plugin.isEnabled();
         }
-        
-         public boolean checkBPerms() {
+
+        public static boolean checkBPerms() {
                 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("bPermissions");
+                return plugin != null && plugin.isEnabled();
+        }
+
+        public static boolean checkFactions() {
+                Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Factions");
                 return plugin != null && plugin.isEnabled();
         }
 }
