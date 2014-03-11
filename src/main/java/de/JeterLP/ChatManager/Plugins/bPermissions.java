@@ -17,10 +17,10 @@ public class bPermissions implements PermissionsPlugin {
 
         @Override
         public String getPrefix(Player p) {
-                if (!Config.MULTIPREFIXES.getBoolean()) {
+                //if (!Config.MULTIPREFIXES.getBoolean()) {
                         return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "prefix");
-                }
-                String finalPrefix = "";
+                //}
+                /*String finalPrefix = "";
                 String[] groups = ApiLayer.getGroups(p.getWorld().getName(), CalculableType.USER, p.getName());
                 for (String group : groups) {
                         String groupPrefix = ApiLayer.getValue(p.getWorld().getName(), CalculableType.GROUP, group, "prefix");
@@ -28,15 +28,15 @@ public class bPermissions implements PermissionsPlugin {
                                 finalPrefix += groupPrefix;
                         }
                 }
-                return finalPrefix;
+                return finalPrefix; */
         }
 
         @Override
         public String getSuffix(Player p) {
-                if (!Config.MULTIPREFIXES.getBoolean()) {
+                //if (!Config.MULTIPREFIXES.getBoolean()) {
                         return ApiLayer.getValue(p.getWorld().getName(), CalculableType.USER, p.getName(), "suffix");
-                }
-                String finalSuffix = "";
+                //}
+                /*String finalSuffix = "";
                 String[] groups = ApiLayer.getGroups(p.getWorld().getName(), CalculableType.USER, p.getName());
                 for (String group : groups) {
                         String groupSuffix = ApiLayer.getValue(p.getWorld().getName(), CalculableType.GROUP, group, "suffix");
@@ -44,7 +44,7 @@ public class bPermissions implements PermissionsPlugin {
                                 finalSuffix += groupSuffix;
                         }
                 }
-                return finalSuffix;
+                return finalSuffix;*/
         }
 
         @Override
