@@ -1,10 +1,10 @@
 Commands:
   Reload:
-    Description: Перезагрузка плагина и его конфигурации.
+    Description: 'Перезагрузка плагина и его конфигурации.'
   Clear:
-    Description: Очистка чата.
-    Console: Консоль
-    Unknown: НЕИЗВЕСТНЫЙ
+    Description: 'Очистка чата.'
+    Console: 'Консоль'
+    Unknown: 'НЕИЗВЕСТНЫЙ'
 Messages:
   Commands:
     Reload:
