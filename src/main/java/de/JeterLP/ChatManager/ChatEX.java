@@ -7,7 +7,6 @@ import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
 import java.io.File;
-import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
 
@@ -73,6 +72,6 @@ public class ChatEX extends JavaPlugin {
         public static void debug(String message) {
                 if (!Config.DEBUG.getBoolean()) return;
                 String output = "[DEBUG] " + message;
-                getInstance().getLogger().log(Level.INFO, output);
+                getInstance().getLogger().info(output);
         }
 }

@@ -30,7 +30,7 @@ public class Vault implements PermissionsPlugin {
 
         @Override
         public String getSuffix(Player p) {
-                 if (!Config.MULTIPREFIXES.getBoolean()) {
+                if (!Config.MULTIPREFIXES.getBoolean()) {
                         return chat.getPlayerSuffix(p.getWorld(), p.getName());
                 }
                 String finalSuffix = "";
@@ -63,13 +63,14 @@ public class Vault implements PermissionsPlugin {
                 return Config.GLOBALFORMAT.getString();
         }
 
-        public static boolean setupChat() {
+        protected static boolean setupChat() {
                 try {
                         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
-                        if (chatProvider != null) {
+                        if (chatProvider != null && chatProvider.getProvider() != null) {
                                 chat = chatProvider.getProvider();
+                                return chat != null && chat.isEnabled();
                         }
-                        return (chat != null);
+                        return false;
                 } catch (Throwable e) {
                         return false;
                 }

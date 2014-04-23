@@ -37,7 +37,7 @@ public class ChatLogger {
         }
 
         private static String fileName() {
-                DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+                DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
                 Calendar cal = Calendar.getInstance();
                 return date.format(cal.getTime()) + ".log";
         }
