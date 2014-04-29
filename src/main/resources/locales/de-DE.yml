@@ -6,6 +6,8 @@ Commands:
     Console: 'KONSOLE'
     Unknown: 'UNBEKANNT'
 Messages:
+  Chat:
+    AdDetected: '&4Werbung ist nicht erlaubt!'
   Commands:
     Reload:
       Success: '&aChatEx wurde neugeladen.'

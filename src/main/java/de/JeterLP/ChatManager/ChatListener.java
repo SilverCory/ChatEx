@@ -31,6 +31,13 @@ public abstract class ChatListener implements Listener {
                 boolean global = false;
                 Player player = event.getPlayer();
                 String chatMessage = event.getMessage();
+                
+                if(Utils.check(chatMessage)) {
+                    Locales.MESSAGES_AD.send(player);
+                    event.setCancelled(true);
+                    return;
+                }
+                
                 if (localChat) {
                         ChatEX.debug("Local chat is enabled!");
                         if (chatMessage.startsWith("!") && player.hasPermission("chatex.chat.global")) {

@@ -6,6 +6,8 @@ Commands:
     Console: 'Консоль'
     Unknown: 'НЕИЗВЕСТНЫЙ'
 Messages:
+  Chat:
+    AdDetected: '&4Advertising is not allowed!'
   Commands:
     Reload:
       Success: '&aКонфигурация перезагружена.'
