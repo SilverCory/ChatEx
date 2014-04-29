@@ -250,7 +250,9 @@ public class Utils {
         return false;
     }
 
-    public static boolean check(String msg) {
-        return Config.ADS_ENABLED.getBoolean() && (checkForIPPattern(msg) || checkForWebPattern(msg));
+    public static boolean check(String msg, Player p) {
+        if (p.hasPermission("chatex.bypassads")) return false;
+        if (!Config.ADS_ENABLED.getBoolean()) return false;
+        return checkForIPPattern(msg) || checkForWebPattern(msg);
     }
 }
