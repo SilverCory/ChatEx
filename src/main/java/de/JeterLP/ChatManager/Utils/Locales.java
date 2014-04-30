@@ -20,7 +20,7 @@ public enum Locales {
     MESSAGES_RELOAD("Messages.Commands.Reload.Success", "&aConfig was reloaded."),
     MESSAGES_CLEAR("Messages.Commands.Clear.Success", "&aThe chat has been cleared by "),
     MESSAGES_AD("Messages.Chat.AdDetected", "&4Advertising is not allowed! (%perm)"),
-    COMMAND_RESULT_NO_PERM("Messages.CommandResult.NoPermission", "&4[ERROR] &7You don't have permission for this! &c(%perm)"),
+    COMMAND_RESULT_NO_PERM("Messages.CommandResult.NoPermission", "&4[ERROR] &7You don't have permission for this! &c(%perm%)"),
     COMMAND_RESULT_WRONG_USAGE("Messages.CommandResult.WrongUsage", "&c[ERROR] &7Wrong usage! Please type &6/%cmd% help&7!");
     
     private final String value;

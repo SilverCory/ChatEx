@@ -11,8 +11,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  */
 public class LOW extends ChatListener {
 
-        @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-        public void onPlayerChat(final AsyncPlayerChatEvent event) {
-                execute(event);
-        }
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    public void onPlayerChat(final AsyncPlayerChatEvent event) {
+        execute(event);
+    }
 }

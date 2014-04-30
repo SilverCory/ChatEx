@@ -7,14 +7,14 @@ import org.bukkit.ChatColor;
  */
 public class CommandHelp {
 
-        private final String FULL_TEXT;
+    private final String FULL_TEXT;
 
-        public CommandHelp(String cmd, String description) {
-                this.FULL_TEXT = ChatColor.GOLD + cmd + ChatColor.GRAY + " - " + description;
-        }
+    public CommandHelp(String cmd, String description) {
+        this.FULL_TEXT = ChatColor.GOLD + cmd + ChatColor.GRAY + " - " + description;
+    }
 
-        public String getText() {
-                return FULL_TEXT;
-        }
+    public String getText() {
+        return FULL_TEXT;
+    }
 
 }

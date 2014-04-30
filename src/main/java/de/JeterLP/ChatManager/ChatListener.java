@@ -16,11 +16,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  * @author TheJeterLP
  */
 public abstract class ChatListener implements Listener {
-    
+
     public void register() {
         Bukkit.getServer().getPluginManager().registerEvents(this, ChatEX.getInstance());
     }
-    
+
     protected void execute(AsyncPlayerChatEvent event) {
         if (!event.getPlayer().hasPermission("chatex.allowchat")) {
             Map<String, String> rep = new HashMap<String, String>();
@@ -29,13 +29,13 @@ public abstract class ChatListener implements Listener {
             event.setCancelled(true);
             return;
         }
-        
+
         String format = PluginManager.getInstance().getMessageFormat(event.getPlayer());
         boolean localChat = Config.RANGEMODE.getBoolean();
         boolean global = false;
         Player player = event.getPlayer();
         String chatMessage = event.getMessage();
-        
+
         if (Utils.check(chatMessage, player)) {
             Map<String, String> rep = new HashMap<String, String>();
             rep.put("%perm", "chatex.bypassads");
@@ -43,7 +43,7 @@ public abstract class ChatListener implements Listener {
             event.setCancelled(true);
             return;
         }
-        
+
         if (localChat) {
             ChatEX.debug("Local chat is enabled!");
             if (chatMessage.startsWith("!") && player.hasPermission("chatex.chat.global")) {
@@ -68,5 +68,5 @@ public abstract class ChatListener implements Listener {
         ChatEX.debug("Logging chatmessage...");
         ChatLogger.writeToFile(event.getPlayer().getName(), event.getMessage());
     }
-    
+
 }

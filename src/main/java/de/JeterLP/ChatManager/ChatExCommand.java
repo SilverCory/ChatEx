@@ -17,42 +17,42 @@ import org.bukkit.entity.Player;
  */
 public class ChatExCommand extends Executor {
 
-        public ChatExCommand() {
-                command = "chatex";
-                permission = "chatex.mod";
-                helpPages.add(new CommandHelp("/chatex reload", Locales.COMMAND_RELOAD_DESCRIPTION.getString()));
-                helpPages.add(new CommandHelp("/chatex clear", Locales.COMMAND_CLEAR_DESCRIPTION.getString()));
-        }
+    public ChatExCommand() {
+        command = "chatex";
+        permission = "chatex.mod";
+        helpPages.add(new CommandHelp("/chatex reload", Locales.COMMAND_RELOAD_DESCRIPTION.getString()));
+        helpPages.add(new CommandHelp("/chatex clear", Locales.COMMAND_CLEAR_DESCRIPTION.getString()));
+    }
 
-        @Override
-        public CommandResult onPlayerCommand(Player p, Command cmd, CommandArgs args) {
-                return onServerCommand(p, cmd, args);
-        }
+    @Override
+    public CommandResult onPlayerCommand(Player p, Command cmd, CommandArgs args) {
+        return onServerCommand(p, cmd, args);
+    }
 
-        @Override
-        public CommandResult onServerCommand(CommandSender sender, Command cmd, CommandArgs args) {
-                if (args.getLength() != 1) return CommandResult.ERROR;
+    @Override
+    public CommandResult onServerCommand(CommandSender sender, Command cmd, CommandArgs args) {
+        if (args.getLength() != 1) return CommandResult.ERROR;
 
-                if (args.getString(0).equalsIgnoreCase("reload")) {
-                        Bukkit.getPluginManager().disablePlugin(ChatEX.getInstance());
-                        Bukkit.getPluginManager().enablePlugin(ChatEX.getInstance());
-                        sender.sendMessage(Locales.MESSAGES_RELOAD.getString());
-                        return CommandResult.SUCCESS;
-                } else if (args.getString(0).equalsIgnoreCase("clear")) {
-                        for (int i = 0; i < 25; i++) {
-                                Bukkit.broadcastMessage("\n");
-                        }
-                        String who = Locales.COMMAND_CLEAR_UNKNOWN.getString();
-                        if ((sender instanceof ConsoleCommandSender) || (sender instanceof BlockCommandSender)) {
-                                who = Locales.COMMAND_CLEAR_CONSOLE.getString();
-                        } else if (sender instanceof Player) {
-                                who = sender.getName();
-                        }
-                        Bukkit.broadcastMessage(Locales.MESSAGES_CLEAR.getString() + who);
-                        return CommandResult.SUCCESS;
-                } else {
-                        return CommandResult.ERROR;
-                }
+        if (args.getString(0).equalsIgnoreCase("reload")) {
+            Bukkit.getPluginManager().disablePlugin(ChatEX.getInstance());
+            Bukkit.getPluginManager().enablePlugin(ChatEX.getInstance());
+            sender.sendMessage(Locales.MESSAGES_RELOAD.getString());
+            return CommandResult.SUCCESS;
+        } else if (args.getString(0).equalsIgnoreCase("clear")) {
+            for (int i = 0; i < 25; i++) {
+                Bukkit.broadcastMessage("\n");
+            }
+            String who = Locales.COMMAND_CLEAR_UNKNOWN.getString();
+            if ((sender instanceof ConsoleCommandSender) || (sender instanceof BlockCommandSender)) {
+                who = Locales.COMMAND_CLEAR_CONSOLE.getString();
+            } else if (sender instanceof Player) {
+                who = sender.getName();
+            }
+            Bukkit.broadcastMessage(Locales.MESSAGES_CLEAR.getString() + who);
+            return CommandResult.SUCCESS;
+        } else {
+            return CommandResult.ERROR;
         }
+    }
 
 }
