@@ -229,15 +229,19 @@ public class Utils {
             if (regexMatcher.group().length() != 0) {
                 ChatEX.debug("Removing subdomains...");
                 String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "");
-                if (text.split("\\.").length > 2) {
+                if (text.split("\\.").length > 4) {
                     String[] domains = text.split("\\.");
                     ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
-                    String toplevel = domains[domains.length - 1];
-                    ChatEX.debug("AdCheck 2:" + toplevel);
-                    String second = domains[domains.length - 2];
-                    ChatEX.debug("AdCheck 3:" + second);
-                    text = second + "." + toplevel;
-                    ChatEX.debug("AdCheck 4:" + text);
+                    String one = domains[domains.length - 1];
+                    ChatEX.debug("AdCheck 2:" + one);
+                    String two = domains[domains.length - 2];
+                    ChatEX.debug("AdCheck 3:" + two);
+                    String three = domains[domains.length - 3];
+                    ChatEX.debug("AdCheck 4:" + two);
+                    String four = domains[domains.length - 4];
+                    ChatEX.debug("AdCheck 5:" + two);
+                    text = one + "." + two + "." + three + "." + four;
+                    ChatEX.debug("AdCheck 6:" + text);
                 }
 
                 if (ipPattern.matcher(text).find()) {
