@@ -243,6 +243,9 @@ public class Utils {
                     text = one + "." + two + "." + three + "." + four;
                     ChatEX.debug("AdCheck 6:" + text);
                 }
+                
+                text = text.split("/")[0];
+                ChatEX.debug("AdCheck ip:" + text);
 
                 if (ipPattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(regexMatcher.group().trim())) {
@@ -273,6 +276,9 @@ public class Utils {
                     text = second + "." + toplevel;
                     ChatEX.debug("AdCheck 4:" + text);
                 }
+                               
+                text = text.split("/")[0];
+                ChatEX.debug("AdCheck url:" + text);
                
                 if (webpattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(text)) {
