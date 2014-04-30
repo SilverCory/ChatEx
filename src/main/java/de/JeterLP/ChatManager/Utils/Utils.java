@@ -7,6 +7,7 @@ import de.JeterLP.ChatManager.ChatListener;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -238,7 +239,20 @@ public class Utils {
     private static boolean checkForWebPattern(String message) {
         Matcher regexMatcherurl = webpattern.matcher(message);
         while (regexMatcherurl.find()) {
-            String text = regexMatcherurl.group().trim().replaceAll("www.", "").replaceAll("http://", "").replaceAll("https://", "");
+            
+            //remove subdomains
+            String text = regexMatcherurl.group().trim().replaceAll("http://", "").replaceAll("https://", "");
+            if (text.split("\\.").length > 2) {
+                String[] domains = text.split("\\.");
+                ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
+                String toplevel = domains[domains.length - 1];
+                ChatEX.debug("AdCheck 2:" + toplevel);
+                String second = domains[domains.length - 2];
+                ChatEX.debug("AdCheck 3:" + second);
+                text = second + "." + toplevel;
+                ChatEX.debug("AdCheck 4:" + text);
+            }
+            
             if (regexMatcherurl.group().length() != 0 && text.length() != 0) {
                 if (webpattern.matcher(message).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(text)) {
