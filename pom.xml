@@ -40,27 +40,6 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>false</minimizeJar>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.mcstats:metrics</include>
-                                </includes>
-                            </artifactSet>                           
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -87,11 +66,7 @@
         <repository>
             <id>Own</id>
             <url>http://jeterlp.admincmd.com/maven-repo/</url>
-        </repository>  
-        <repository>
-            <id>Plugin Metrics</id>
-            <url>http://repo.mcstats.org/content/repositories/public</url>
-        </repository>    
+        </repository>      
     </repositories>
     <dependencies>      
         <dependency>
@@ -113,12 +88,6 @@
             <groupId>de.bananaco</groupId>
             <artifactId>bPermissions</artifactId>
             <version>2.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mcstats</groupId>
-            <artifactId>metrics</artifactId>
-            <version>R6</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.massivecraft</groupId>

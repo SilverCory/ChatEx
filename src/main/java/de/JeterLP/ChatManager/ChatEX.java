@@ -8,7 +8,6 @@ import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
 import java.io.File;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
 
 /**
  * @author TheJeterLP
