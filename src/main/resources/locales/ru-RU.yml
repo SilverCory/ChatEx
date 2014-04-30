@@ -7,7 +7,7 @@ Commands:
     Unknown: 'НЕИЗВЕСТНЫЙ'
 Messages:
   Chat:
-    AdDetected: '&4Advertising is not allowed!'
+    AdDetected: '&4Advertising is not allowed! (%perm)'
   Commands:
     Reload:
       Success: '&aКонфигурация перезагружена.'

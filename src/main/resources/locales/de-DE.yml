@@ -7,7 +7,7 @@ Commands:
     Unknown: 'UNBEKANNT'
 Messages:
   Chat:
-    AdDetected: '&4Werbung ist nicht erlaubt!'
+    AdDetected: '&4Werbung ist nicht erlaubt! (%perm)'
   Commands:
     Reload:
       Success: '&aChatEx wurde neugeladen.'
