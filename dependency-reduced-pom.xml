@@ -4,7 +4,7 @@
   <groupId>de.JeterLP</groupId>
   <artifactId>ChatEx</artifactId>
   <name>ChatEx</name>
-  <version>1.0.11-RELEASE</version>
+  <version>1.0.12-SNAPSHOT</version>
   <description>ChatManagement plugin for Bukkit</description>
   <inceptionYear>2013</inceptionYear>
   <scm>

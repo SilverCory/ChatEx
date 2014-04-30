@@ -55,7 +55,7 @@ public enum Locales {
         for (String string : map.keySet()) {
             msg = msg.replaceAll(string, map.get(string));
         }
-        s.sendMessage(getString());
+        s.sendMessage(msg);
     }
     
     public static void load() throws IOException {
