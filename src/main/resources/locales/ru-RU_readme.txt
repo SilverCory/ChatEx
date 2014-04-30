@@ -28,6 +28,10 @@ Owner(Владелец) и Moderator(модератор).
 
 == Дополнительная информация
 
+If you want to report a bug, please open a new one at the bugtracker. You can find it on the plugins page: http://dev.bukkit.org/bukkit-plugins/chatex/
+You should include a latest.log file WITH DEBUG ENABLED!
+You can enable the debug logging inside the config.
+
 Особая благодарность:
 - PikachuEXE за создание функции Multi-prefixes/suffixes.
 - t3hk0d3 за создание старого chatmanager.

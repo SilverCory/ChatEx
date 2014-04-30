@@ -29,6 +29,10 @@ If you now have a special prefix only for you, it will be added to the prefix in
 
 == Additional Information
 
+If you want to report a bug, please open a new one at the bugtracker. You can find it on the plugins page: http://dev.bukkit.org/bukkit-plugins/chatex/
+You should include a latest.log file WITH DEBUG ENABLED!
+You can enable the debug logging inside the config.
+
 Special thanks to: 
 - PikachuEXE for making the Multi-prefixes/suffixes feature.
 - t3hk0d3 for creating the old version of chatmanager.

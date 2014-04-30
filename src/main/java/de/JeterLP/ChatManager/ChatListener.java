@@ -66,7 +66,7 @@ public abstract class ChatListener implements Listener {
         ChatEX.debug("Setting message!");
         event.setMessage(chatMessage);
         ChatEX.debug("Logging chatmessage...");
-        ChatLogger.writeToFile(event.getPlayer().getName(), event.getMessage());
+        ChatLogger.writeToFile(event.getPlayer(), event.getMessage());
     }
 
 }

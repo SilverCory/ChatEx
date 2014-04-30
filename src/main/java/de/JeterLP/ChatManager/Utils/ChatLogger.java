@@ -7,13 +7,14 @@ import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import org.bukkit.entity.Player;
 
 /**
  * @author TheJeterLP
  */
 public class ChatLogger {
 
-    public static void writeToFile(String player, String message) {
+    public static void writeToFile(Player player, String message) {
         if (!Config.LOGCHAT.getBoolean()) return;
         BufferedWriter bw = null;
         File file = new File(ChatEX.getInstance().getDataFolder().getAbsolutePath() + File.separator + "logs");
@@ -22,7 +23,26 @@ public class ChatLogger {
         }
         try {
             bw = new BufferedWriter(new FileWriter(file + File.separator + fileName(), true));
-            bw.write(prefix() + player + ": " + message);
+            bw.write(prefix() + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
+            bw.newLine();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                if (bw != null) {
+                    bw.flush();
+                    bw.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    public static void writeToAdFile(Player player, String message) {
+        if (!Config.ADS_LOG.getBoolean()) return;
+        BufferedWriter bw = null;       
+        try {
+            bw = new BufferedWriter(new FileWriter(ChatEX.getInstance().getDataFolder().getAbsolutePath() + File.separator + "ads.log", true));
+            bw.write(prefix() + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
             bw.newLine();
         } catch (Exception ex) {
         } finally {

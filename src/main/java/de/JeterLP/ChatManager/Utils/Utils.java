@@ -223,35 +223,34 @@ public class Utils {
     }
 
     private static boolean checkForIPPattern(String message) {
+        ChatEX.debug("IP: Searching for ip: " + message);
         Matcher regexMatcher = ipPattern.matcher(message);
         while (regexMatcher.find()) {
-            ChatEX.debug("Found!");
+            ChatEX.debug("IP: Found!");
             if (regexMatcher.group().length() != 0) {
-                ChatEX.debug("Removing subdomains...");
-                String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "");
-                
-                text = text.split("/")[0];
-                ChatEX.debug("AdCheck ip:" + text);
-                
+                String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "").split("/")[0];
+                ChatEX.debug("IP: AdCheck ip: " + text);
+                ChatEX.debug("IP: AdCheck length: " + text.split("\\.").length);
+
                 if (text.split("\\.").length > 4) {
+                    ChatEX.debug("IP: Removing subdomains...");
                     String[] domains = text.split("\\.");
-                    ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
+                    ChatEX.debug("IP: AdCheck 1:" + Arrays.toString(domains));
                     String one = domains[domains.length - 1];
-                    ChatEX.debug("AdCheck 2:" + one);
+                    ChatEX.debug("IP: AdCheck 2:" + one);
                     String two = domains[domains.length - 2];
-                    ChatEX.debug("AdCheck 3:" + two);
+                    ChatEX.debug("IP: AdCheck 3:" + two);
                     String three = domains[domains.length - 3];
-                    ChatEX.debug("AdCheck 4:" + two);
+                    ChatEX.debug("IP: AdCheck 4:" + three);
                     String four = domains[domains.length - 4];
-                    ChatEX.debug("AdCheck 5:" + two);
+                    ChatEX.debug("IP: AdCheck 5:" + four);
                     text = one + "." + two + "." + three + "." + four;
                     ChatEX.debug("AdCheck 6:" + text);
                 }
-                
-                
+
                 if (ipPattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(regexMatcher.group().trim())) {
-                        ChatEX.debug("Found ad: " + message);
+                        ChatEX.debug("IP: Found ad: " + text);
                         return true;
                     }
                 }
@@ -261,32 +260,30 @@ public class Utils {
     }
 
     private static boolean checkForWebPattern(String message) {
-        ChatEX.debug("Checking for web Pattern...");
+        ChatEX.debug("WEB: Searching for url: " + message);
         Matcher regexMatcher = webpattern.matcher(message);
         while (regexMatcher.find()) {
-            ChatEX.debug("Found!");
+            ChatEX.debug("WEB: Found!");
             if (regexMatcher.group().length() != 0) {
-                ChatEX.debug("Removing subdomains...");
-                String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "");
-                
-                text = text.split("/")[0];
-                ChatEX.debug("AdCheck url:" + text);
-                
+                String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "").split("/")[0];
+                ChatEX.debug("WEB: AdCheck url: " + text);
+                ChatEX.debug("WEB: AdCheck length: " + text.split("\\.").length);
+
                 if (text.split("\\.").length > 2) {
+                    ChatEX.debug("WEB: Removing subdomains...");
                     String[] domains = text.split("\\.");
-                    ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
+                    ChatEX.debug("WEB: AdCheck 1:" + Arrays.toString(domains));
                     String toplevel = domains[domains.length - 1];
-                    ChatEX.debug("AdCheck 2:" + toplevel);
+                    ChatEX.debug("WEB: AdCheck 2:" + toplevel);
                     String second = domains[domains.length - 2];
-                    ChatEX.debug("AdCheck 3:" + second);
+                    ChatEX.debug("WEB: AdCheck 3:" + second);
                     text = second + "." + toplevel;
-                    ChatEX.debug("AdCheck 4:" + text);
+                    ChatEX.debug("WEB: AdCheck 4:" + text);
                 }
-                               
-                          
+
                 if (webpattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(text)) {
-                        ChatEX.debug("Found ad: " + text);
+                        ChatEX.debug("WEB: Found ad: " + text);
                         return true;
                     }
                 }
@@ -299,6 +296,10 @@ public class Utils {
         ChatEX.debug("Checking for advertising...");
         if (p.hasPermission("chatex.bypassads")) return false;
         if (!Config.ADS_ENABLED.getBoolean()) return false;
-        return checkForIPPattern(msg) || checkForWebPattern(msg);
+        boolean found = checkForIPPattern(msg) || checkForWebPattern(msg);
+        if (found) {
+            ChatLogger.writeToAdFile(p, msg);
+        }
+        return found;
     }
 }

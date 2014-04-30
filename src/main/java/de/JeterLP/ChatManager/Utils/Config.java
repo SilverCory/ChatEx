@@ -26,7 +26,8 @@ public enum Config {
     DEBUG("Debug", false, "Enables debug mode. Enable this if you get a bug."),
     LOCALE("Locale", "en-EN", "Which language do you want? (You can choose betwenn de-DE, en-EN and ru-RU by default.)"),
     ADS_ENABLED("Ads.Enabled", true, "Should we check for ads?"),
-    ADS_BYPASS("Ads.Bypass", Arrays.asList("127.0.0.1", "my-domain.com"), "A list with allowed ips or domains.");
+    ADS_BYPASS("Ads.Bypass", Arrays.asList("127.0.0.1", "my-domain.com"), "A list with allowed ips or domains."),
+    ADS_LOG("Ads.Log", true, "Should the ads be loged in a file?");
 
     private final Object value;
     private final String path;
