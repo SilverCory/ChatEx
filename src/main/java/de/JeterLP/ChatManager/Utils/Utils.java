@@ -229,6 +229,10 @@ public class Utils {
             if (regexMatcher.group().length() != 0) {
                 ChatEX.debug("Removing subdomains...");
                 String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "");
+                
+                text = text.split("/")[0];
+                ChatEX.debug("AdCheck ip:" + text);
+                
                 if (text.split("\\.").length > 4) {
                     String[] domains = text.split("\\.");
                     ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
@@ -244,9 +248,7 @@ public class Utils {
                     ChatEX.debug("AdCheck 6:" + text);
                 }
                 
-                text = text.split("/")[0];
-                ChatEX.debug("AdCheck ip:" + text);
-
+                
                 if (ipPattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(regexMatcher.group().trim())) {
                         ChatEX.debug("Found ad: " + message);
@@ -266,6 +268,10 @@ public class Utils {
             if (regexMatcher.group().length() != 0) {
                 ChatEX.debug("Removing subdomains...");
                 String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "");
+                
+                text = text.split("/")[0];
+                ChatEX.debug("AdCheck url:" + text);
+                
                 if (text.split("\\.").length > 2) {
                     String[] domains = text.split("\\.");
                     ChatEX.debug("AdCheck 1:" + Arrays.toString(domains));
@@ -277,9 +283,7 @@ public class Utils {
                     ChatEX.debug("AdCheck 4:" + text);
                 }
                                
-                text = text.split("/")[0];
-                ChatEX.debug("AdCheck url:" + text);
-               
+                          
                 if (webpattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(text)) {
                         ChatEX.debug("Found ad: " + text);
