@@ -6,8 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 /**
- *
- * @author t3hk0d3, TheJeterLP
+ * @author TheJeterLP
  */
 public class LOWEST extends ChatListener {
 

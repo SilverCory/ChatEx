@@ -21,8 +21,7 @@ import org.bukkit.entity.Player;
  * @author TheJeterLP
  */
 public class Utils {
-
-    //TODO: Add anti-advertising system. See https://github.com/antiAD/AntiAd/blob/master/src/main/java/com/github/antiad/AntiAd/Adfinder.java for ex
+  
     private static final Pattern chatColorPattern = Pattern.compile("(?i)&([0-9A-F])");
     private static final Pattern chatMagicPattern = Pattern.compile("(?i)&([K])");
     private static final Pattern chatBoldPattern = Pattern.compile("(?i)&([L])");
