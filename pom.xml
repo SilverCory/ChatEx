@@ -61,8 +61,8 @@
         </repository>
         <repository>
             <id>vault-repo</id>
-            <url>http://ci.herocraftonline.com/plugin/repository/everything</url>
-        </repository>
+            <url>http://nexus.theyeticave.net/content/repositories/pub_releases/</url>
+        </repository>  
         <repository>
             <id>Own</id>
             <url>http://jeterlp.admincmd.com/maven-repo/</url>
@@ -77,7 +77,7 @@
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>Vault</artifactId>
-            <version>1.2.27</version>
+            <version>1.4.1</version>
         </dependency>
         <dependency>
             <groupId>ru.tehkode</groupId>

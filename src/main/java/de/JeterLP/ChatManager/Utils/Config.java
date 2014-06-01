@@ -14,8 +14,8 @@ import org.bukkit.event.EventPriority;
 public enum Config {
 
     ENABLE("enable", true, "Should the plugin be enabled?"),
-    FORMAT("message-format", "%prefix%player%suffix: %message", "The standard message-format."),
-    GLOBALFORMAT("global-message-format", "&9[%world] %prefix%player%suffix: &e%message", "The message-format if ranged-mode is enabled."),
+    FORMAT("message-format", "%prefix%displayname%suffix: %message", "The standard message-format."),
+    GLOBALFORMAT("global-message-format", "&9[%world] %prefix%displayname%suffix: &e%message", "The message-format if ranged-mode is enabled."),
     RANGEMODE("ranged-mode", false, "Should the ranged-mode be enabled?"),
     RANGE("chat-range", 100.0, "The range to talk to other players."),
     MULTIPREFIXES("multi-prefixes", false, "Should the multi-prefixes be enabled? See readme.txt for more info."),
