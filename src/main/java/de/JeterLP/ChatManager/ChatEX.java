@@ -1,11 +1,12 @@
 package de.JeterLP.ChatManager;
 
 import de.JeterLP.ChatManager.Plugins.PermissionsPlugin;
-import de.JeterLP.ChatManager.Utils.Config;
-import de.JeterLP.ChatManager.Utils.Utils;
-import de.JeterLP.ChatManager.Utils.AdvancedUpdater;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
+import de.JeterLP.ChatManager.Utils.Config;
+import de.JeterLP.ChatManager.Utils.Utils;
+import de.thejeterlp.bukkit.updater.UpdateType;
+import de.thejeterlp.bukkit.updater.Updater;
 import java.io.File;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,7 +38,8 @@ public class ChatEX extends JavaPlugin {
             debug("Starting Metrics/MCStats...");
             new Metrics(this).start();
             debug("Starting updater...");
-            new AdvancedUpdater(this, 65863, "http://dev.bukkit.org/bukkit-plugins/chatex/").search();
+            Updater u = new Updater(this, 65863, "chatex", Config.UPDATE.getBoolean(), UpdateType.DOWNLOAD);
+            u.search();
             getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
             debug("registering Listener...");
             if (!Utils.registerListener()) {
