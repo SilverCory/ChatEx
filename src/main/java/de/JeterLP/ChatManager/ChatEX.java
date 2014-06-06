@@ -5,6 +5,7 @@ import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
 import de.JeterLP.ChatManager.Utils.Config;
 import de.JeterLP.ChatManager.Utils.Utils;
+import de.thejeterlp.bukkit.updater.ReleaseType;
 import de.thejeterlp.bukkit.updater.UpdateType;
 import de.thejeterlp.bukkit.updater.Updater;
 import java.io.File;
@@ -38,7 +39,7 @@ public class ChatEX extends JavaPlugin {
             debug("Starting Metrics/MCStats...");
             new Metrics(this).start();
             debug("Starting updater...");
-            Updater u = new Updater(this, 65863, "chatex", Config.UPDATE.getBoolean(), UpdateType.DOWNLOAD);
+            Updater u = new Updater(this, 65863, "chatex", Config.UPDATE.getBoolean(), UpdateType.DOWNLOAD, ReleaseType.RELEASE);
             u.search();
             getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
             debug("registering Listener...");
