@@ -9,8 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * @author TheJeterLP
@@ -19,6 +23,33 @@ public abstract class ChatListener implements Listener {
 
     public void register() {
         Bukkit.getServer().getPluginManager().registerEvents(this, ChatEX.getInstance());
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e) {
+        String format = "%prefix%player%suffix";
+        String msg;
+        if (!e.getPlayer().hasPlayedBefore()) {
+            msg = Locales.PLAYER_FIRST_JOIN.getString();
+        } else {
+            msg = Locales.PLAYER_JOIN.getString();
+        }
+
+        e.setJoinMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
+    }
+
+    @EventHandler
+    public void onQuit(final PlayerQuitEvent e) {
+        String format = "%prefix%player%suffix";
+        String msg = Locales.PLAYER_QUIT.getString();
+        e.setQuitMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
+    }
+
+    @EventHandler
+    public void onKick(final PlayerKickEvent e) {
+        String format = "%prefix%player%suffix";
+        String msg = Locales.PLAYER_KICK.getString();
+        e.setLeaveMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
     }
 
     protected void execute(AsyncPlayerChatEvent event) {

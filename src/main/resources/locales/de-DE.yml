@@ -16,3 +16,9 @@ Messages:
   CommandResult:
     NoPermission: '&4[FEHLER] &7Dafür hast du nicht die nötigen Rechte! &c(%perm%)'
     WrongUsage: '&c[FEHLER] &7Falsche Benutzung! Benutze &6/%cmd% help&7!'
+  Player:
+      Join: ' &ehat den Server betreten!'
+      FirstJoin: ' &ehat den Server &6das erste Mal &ebetreten!'
+      Quit: ' &ehat den Server verlassen!'
+      Kick: ' &ewurde vom Server gekickt!'
+    

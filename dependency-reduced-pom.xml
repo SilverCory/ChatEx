@@ -50,7 +50,7 @@
               <minimizeJar>false</minimizeJar>
               <artifactSet>
                 <includes>
-                  <include>org.mcstats:metrics</include>
+                  <include>de.TheJeterLP.Bukkit:Updater</include>
                 </includes>
               </artifactSet>
             </configuration>
@@ -66,15 +66,11 @@
     </repository>
     <repository>
       <id>vault-repo</id>
-      <url>http://ci.herocraftonline.com/plugin/repository/everything</url>
+      <url>http://nexus.theyeticave.net/content/repositories/pub_releases/</url>
     </repository>
     <repository>
       <id>Own</id>
       <url>http://jeterlp.admincmd.com/maven-repo/</url>
-    </repository>
-    <repository>
-      <id>Plugin Metrics</id>
-      <url>http://repo.mcstats.org/content/repositories/public</url>
     </repository>
   </repositories>
   <dependencies>
@@ -87,7 +83,7 @@
     <dependency>
       <groupId>net.milkbowl.vault</groupId>
       <artifactId>Vault</artifactId>
-      <version>1.2.27</version>
+      <version>1.4.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
