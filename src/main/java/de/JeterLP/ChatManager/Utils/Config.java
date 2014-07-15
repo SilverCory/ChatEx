@@ -26,7 +26,8 @@ public enum Config {
     LOCALE("Locale", "en-EN", "Which language do you want? (You can choose betwenn de-DE, en-EN and ru-RU by default.)"),
     ADS_ENABLED("Ads.Enabled", true, "Should we check for ads?"),
     ADS_BYPASS("Ads.Bypass", Arrays.asList("127.0.0.1", "my-domain.com"), "A list with allowed ips or domains."),
-    ADS_LOG("Ads.Log", true, "Should the ads be loged in a file?");
+    ADS_LOG("Ads.Log", true, "Should the ads be loged in a file?"),
+    CHENGE_JOIN_AND_QUIT("Messages.ChangeJoinAndQuit", false, "Do you want to change the join and the quit messages?");
 
     private final Object value;
     private final String path;
@@ -61,7 +62,7 @@ public enum Config {
     }
 
     public String getString() {
-        return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
+        return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "Â§$1");
     }
 
     public List<String> getStringList() {

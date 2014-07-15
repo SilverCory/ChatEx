@@ -27,6 +27,7 @@ public abstract class ChatListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
         String format = "%prefix%player%suffix";
         String msg;
         if (!e.getPlayer().hasPlayedBefore()) {
@@ -40,6 +41,7 @@ public abstract class ChatListener implements Listener {
 
     @EventHandler
     public void onQuit(final PlayerQuitEvent e) {
+        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
         String format = "%prefix%player%suffix";
         String msg = Locales.PLAYER_QUIT.getString();
         e.setQuitMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
@@ -47,6 +49,7 @@ public abstract class ChatListener implements Listener {
 
     @EventHandler
     public void onKick(final PlayerKickEvent e) {
+        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
         String format = "%prefix%player%suffix";
         String msg = Locales.PLAYER_KICK.getString();
         e.setLeaveMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
