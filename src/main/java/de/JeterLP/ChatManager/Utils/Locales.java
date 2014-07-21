@@ -22,10 +22,10 @@ public enum Locales {
     MESSAGES_AD("Messages.Chat.AdDetected", "&4Advertising is not allowed! (%perm)"),
     COMMAND_RESULT_NO_PERM("Messages.CommandResult.NoPermission", "&4[ERROR] &7You don't have permission for this! &c(%perm)"),
     COMMAND_RESULT_WRONG_USAGE("Messages.CommandResult.WrongUsage", "&c[ERROR] &7Wrong usage! Please type &6/%cmd% help&7!"),
-    PLAYER_JOIN("Messages.Player.Join", "%prefix%displayname%suffix &ejoined the game!"),
-    PLAYER_FIRST_JOIN("Messages.Player.FirstJoin", "%prefix%displayname%suffix &ejoined the game &6for the first time!"),
-    PLAYER_KICK("Messages.Player.Kick", "%prefix%displayname%suffix &ewas kicked from the game!"),
-    PLAYER_QUIT("Messages.Player.Quit", "%prefix%displayname%suffix &eleft the game!");
+    PLAYER_JOIN("Messages.Player.Join", "%faction %prefix%displayname%suffix &ejoined the game!"),
+    PLAYER_FIRST_JOIN("Messages.Player.FirstJoin", "%faction %prefix%displayname%suffix &ejoined the game &6for the first time!"),
+    PLAYER_KICK("Messages.Player.Kick", "%faction %prefix%displayname%suffix &ewas kicked from the game!"),
+    PLAYER_QUIT("Messages.Player.Quit", "%faction %prefix%displayname%suffix &eleft the game!");
     
     private final String value;
     private final String path;
