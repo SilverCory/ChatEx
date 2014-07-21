@@ -14,8 +14,8 @@ import org.bukkit.event.EventPriority;
 public enum Config {
 
     ENABLE("enable", true, "Should the plugin be enabled?"),
-    FORMAT("message-format", "%prefix%displayname%suffix: %message", "The standard message-format."),
-    GLOBALFORMAT("global-message-format", "&9[%world] %prefix%displayname%suffix: &e%message", "The message-format if ranged-mode is enabled."),
+    FORMAT("message-format", "%faction %prefix%displayname%suffix: %message", "The standard message-format."),
+    GLOBALFORMAT("global-message-format", "%faction &9[%world] %prefix%displayname%suffix: &e%message", "The message-format if ranged-mode is enabled."),
     RANGEMODE("ranged-mode", false, "Should the ranged-mode be enabled?"),
     RANGE("chat-range", 100.0, "The range to talk to other players."),
     MULTIPREFIXES("multi-prefixes", false, "Should the multi-prefixes be enabled? See readme.txt for more info."),
@@ -27,7 +27,7 @@ public enum Config {
     ADS_ENABLED("Ads.Enabled", true, "Should we check for ads?"),
     ADS_BYPASS("Ads.Bypass", Arrays.asList("127.0.0.1", "my-domain.com"), "A list with allowed ips or domains."),
     ADS_LOG("Ads.Log", true, "Should the ads be loged in a file?"),
-    CHENGE_JOIN_AND_QUIT("Messages.ChangeJoinAndQuit", false, "Do you want to change the join and the quit messages?");
+    CHANGE_JOIN_AND_QUIT("Messages.JoinAndQuit.Enabled", false, "Do you want to change the join and the quit messages?");
 
     private final Object value;
     private final String path;

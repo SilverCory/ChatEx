@@ -1,17 +1,27 @@
 package de.JeterLP.ChatManager.Command;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-/**
- * @author TheJeterLP
- */
 public class CommandArgs {
 
     private final String[] args;
+    private final int length;
 
-    public CommandArgs(String[] args) {
+    public static CommandArgs getArgs(String[] args, int start) {
+        String a = "";
+        int length = 0;
+        for (int i = start; i < args.length; i++) {
+            a += args[i] + ";";
+            length++;
+        }
+        return new CommandArgs(a.split(";"), length);
+    }
+
+    private CommandArgs(String[] args, int length) {
         this.args = args;
+        this.length = length;
     }
 
     public String getString(int number) {
@@ -20,8 +30,7 @@ public class CommandArgs {
 
     public boolean isInteger(int number) {
         try {
-            int i = Integer.valueOf(args[number]);
-            i++;
+            Integer.valueOf(args[number]);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -38,11 +47,11 @@ public class CommandArgs {
     }
 
     public boolean isEmpty() {
-        return args.length <= 0;
+        return length < 1;
     }
 
     public int getLength() {
-        return args.length;
+        return length;
     }
 
     public String[] getArgs() {
@@ -56,6 +65,10 @@ public class CommandArgs {
 
     public Player getPlayer(int num) {
         return Bukkit.getPlayer(args[num]);
+    }
+
+    public OfflinePlayer getOfflinePlayer(int num) {
+        return Bukkit.getOfflinePlayer(args[num]);
     }
 
     public int getInt(int num) {

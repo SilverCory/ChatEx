@@ -10,6 +10,7 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -25,34 +26,25 @@ public abstract class ChatListener implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, ChatEX.getInstance());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent e) {
-        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
-        String format = "%prefix%player%suffix";
-        String msg;
-        if (!e.getPlayer().hasPlayedBefore()) {
-            msg = Locales.PLAYER_FIRST_JOIN.getString();
-        } else {
-            msg = Locales.PLAYER_JOIN.getString();
-        }
-
-        e.setJoinMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
+        if (!Config.CHANGE_JOIN_AND_QUIT.getBoolean()) return;
+        String msg = (e.getPlayer().hasPlayedBefore() ? Locales.PLAYER_FIRST_JOIN.getString() : Locales.PLAYER_JOIN.getString());
+        e.setJoinMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), msg));
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onQuit(final PlayerQuitEvent e) {
-        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
-        String format = "%prefix%player%suffix";
+        if (!Config.CHANGE_JOIN_AND_QUIT.getBoolean()) return;
         String msg = Locales.PLAYER_QUIT.getString();
-        e.setQuitMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
+        e.setQuitMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), msg));
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onKick(final PlayerKickEvent e) {
-        if (!Config.CHENGE_JOIN_AND_QUIT.getBoolean()) return;
-        String format = "%prefix%player%suffix";
+        if (!Config.CHANGE_JOIN_AND_QUIT.getBoolean()) return;
         String msg = Locales.PLAYER_KICK.getString();
-        e.setLeaveMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), format) + msg);
+        e.setLeaveMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), msg));
     }
 
     protected void execute(AsyncPlayerChatEvent event) {

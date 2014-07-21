@@ -7,6 +7,7 @@ import de.JeterLP.ChatManager.ChatListener;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ import org.bukkit.entity.Player;
  * @author TheJeterLP
  */
 public class Utils {
-  
+
     private static final Pattern chatColorPattern = Pattern.compile("(?i)&([0-9A-F])");
     private static final Pattern chatMagicPattern = Pattern.compile("(?i)&([K])");
     private static final Pattern chatBoldPattern = Pattern.compile("(?i)&([L])");
@@ -60,12 +61,9 @@ public class Utils {
 
     public static List<Player> getLocalRecipients(Player sender) {
         Location playerLocation = sender.getLocation();
-        List<Player> recipients = new LinkedList<Player>();
+        List<Player> recipients = new ArrayList<Player>();
         double squaredDistance = Math.pow(Config.RANGE.getDouble(), 2);
-        for (Player recipient : Bukkit.getServer().getOnlinePlayers()) {
-            if (!recipient.getWorld().equals(sender.getWorld())) {
-                continue;
-            }
+        for (Player recipient : sender.getWorld().getPlayers()) {
             if (playerLocation.distanceSquared(recipient.getLocation()) > squaredDistance) {
                 continue;
             }

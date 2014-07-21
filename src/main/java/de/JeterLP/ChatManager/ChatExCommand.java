@@ -1,8 +1,8 @@
 package de.JeterLP.ChatManager;
 
+import de.JeterLP.ChatManager.Command.BaseCommand;
 import de.JeterLP.ChatManager.Command.CommandArgs;
 import de.JeterLP.ChatManager.Command.CommandHelp;
-import de.JeterLP.ChatManager.Command.Executor;
 import de.JeterLP.ChatManager.Command.CommandResult;
 import de.JeterLP.ChatManager.Utils.*;
 import org.bukkit.Bukkit;
@@ -15,11 +15,10 @@ import org.bukkit.entity.Player;
 /**
  * @author TheJeterLP
  */
-public class ChatExCommand extends Executor {
+public class ChatExCommand extends BaseCommand {
 
     public ChatExCommand() {
-        command = "chatex";
-        permission = "chatex.mod";
+        super("chatex", "chatex.mod");
         helpPages.add(new CommandHelp("/chatex reload", Locales.COMMAND_RELOAD_DESCRIPTION.getString()));
         helpPages.add(new CommandHelp("/chatex clear", Locales.COMMAND_CLEAR_DESCRIPTION.getString()));
     }
@@ -31,8 +30,6 @@ public class ChatExCommand extends Executor {
 
     @Override
     public CommandResult onServerCommand(CommandSender sender, Command cmd, CommandArgs args) {
-        if (args.getLength() != 1) return CommandResult.ERROR;
-
         if (args.getString(0).equalsIgnoreCase("reload")) {
             Bukkit.getPluginManager().disablePlugin(ChatEX.getInstance());
             Bukkit.getPluginManager().enablePlugin(ChatEX.getInstance());
@@ -53,6 +50,11 @@ public class ChatExCommand extends Executor {
         } else {
             return CommandResult.ERROR;
         }
+    }
+
+    @Override
+    public boolean argsCheck(CommandArgs args) {
+        return args.getLength() == 1;
     }
 
 }

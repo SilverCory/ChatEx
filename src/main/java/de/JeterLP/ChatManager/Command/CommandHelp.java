@@ -2,9 +2,7 @@ package de.JeterLP.ChatManager.Command;
 
 import org.bukkit.ChatColor;
 
-/**
- * @author TheJeterLP
- */
+
 public class CommandHelp {
 
     private final String FULL_TEXT;
