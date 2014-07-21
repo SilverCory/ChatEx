@@ -24,8 +24,8 @@ public enum Locales {
     COMMAND_RESULT_WRONG_USAGE("Messages.CommandResult.WrongUsage", "&c[ERROR] &7Wrong usage! Please type &6/%cmd% help&7!"),
     PLAYER_JOIN("Messages.Player.Join", " &ejoined the game!"),
     PLAYER_FIRST_JOIN("Messages.Player.FirstJoin", " &ejoined the game &6for the first time!"),
-    PLAYER_QUIT("Messages.Player.Quit", " &ewas kicked from the game!"),
-    PLAYER_KICK("Messages.Player.Kick", " &eleft the game!");
+    PLAYER_KICK("Messages.Player.Kick", " &ewas kicked from the game!"),
+    PLAYER_QUIT("Messages.Player.Quit", " &eleft the game!");
     
     private final String value;
     private final String path;
