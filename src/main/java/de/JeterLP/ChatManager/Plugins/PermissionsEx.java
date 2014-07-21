@@ -9,7 +9,7 @@ public class PermissionsEx implements PermissionsPlugin {
 
     @Override
     public String getPrefix(Player p) {
-        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
+        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p);
         if (user == null) {
             return "";
         }
@@ -33,7 +33,7 @@ public class PermissionsEx implements PermissionsPlugin {
 
     @Override
     public String getSuffix(Player p) {
-        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
+        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p);
         if (user == null) {
             return "";
         }
@@ -57,7 +57,7 @@ public class PermissionsEx implements PermissionsPlugin {
 
     @Override
     public String[] getGroupNames(Player p) {
-        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
+        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p);
         if (user != null) {
             return user.getGroupsNames();
         }
@@ -67,18 +67,18 @@ public class PermissionsEx implements PermissionsPlugin {
 
     @Override
     public String getName() {
-        return ru.tehkode.permissions.bukkit.PermissionsEx.getPlugin().getDescription().getName();
+        return ru.tehkode.permissions.bukkit.PermissionsEx.getPlugin().getName();
     }
 
     @Override
     public String getMessageFormat(Player p) {
-        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
+        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p);
         return user.getOption(Config.FORMAT.getPath(), p.getWorld().getName(), Config.FORMAT.getString());
     }
 
     @Override
     public String getGlobalMessageFormat(Player p) {
-        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p.getName());
+        PermissionUser user = ru.tehkode.permissions.bukkit.PermissionsEx.getPermissionManager().getUser(p);
         return user.getOption(Config.GLOBALFORMAT.getPath(), p.getWorld().getName(), Config.GLOBALFORMAT.getString());
     }
 }
