@@ -299,7 +299,7 @@ public class Utils {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("%player", p.getName());
                 map.put("%message", msg);
-                Locales.MESSAGES_AD_NOTIFY.send(p, map);
+                Locales.MESSAGES_AD_NOTIFY.send(op, map);
             }
             ChatLogger.writeToAdFile(p, msg);
         }
