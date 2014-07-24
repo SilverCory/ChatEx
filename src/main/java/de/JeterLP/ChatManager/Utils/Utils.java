@@ -10,11 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -22,7 +21,7 @@ import org.bukkit.entity.Player;
  * @author TheJeterLP
  */
 public class Utils {
-
+    
     private static final Pattern chatColorPattern = Pattern.compile("(?i)&([0-9A-F])");
     private static final Pattern chatMagicPattern = Pattern.compile("(?i)&([K])");
     private static final Pattern chatBoldPattern = Pattern.compile("(?i)&([L])");
@@ -39,7 +38,7 @@ public class Utils {
     private static final String permissionChatUnderline = "chatex.chat.underline";
     private static final String permissionChatItalic = "chatex.chat.italic";
     private static final String permissionChatReset = "chatex.chat.reset";
-
+    
     public static String translateColorCodes(String string, Player p) {
         if (string == null) {
             return "";
@@ -54,11 +53,11 @@ public class Utils {
         if (p.hasPermission(permissionChatReset)) newstring = chatResetPattern.matcher(newstring).replaceAll("\u00A7$1");
         return newstring;
     }
-
+    
     public static String replaceColors(String message) {
         return message.replaceAll("&((?i)[0-9a-fk-or])", "§$1");
     }
-
+    
     public static List<Player> getLocalRecipients(Player sender) {
         Location playerLocation = sender.getLocation();
         List<Player> recipients = new ArrayList<Player>();
@@ -71,7 +70,7 @@ public class Utils {
         }
         return recipients;
     }
-
+    
     public static String replacePlayerPlaceholders(Player player, String format) {
         String result = format;
         result = result.replace("%displayname", player.getDisplayName());
@@ -85,7 +84,7 @@ public class Utils {
         result = replaceColors(result);
         return result;
     }
-
+    
     private static String replaceTime(String message) {
         Calendar calendar = Calendar.getInstance();
         if (message.contains("%time")) {
@@ -164,33 +163,33 @@ public class Utils {
             }
             message = message.replace("%M", month);
         }
-
+        
         if (message.contains("%y")) {
             final String year = String.valueOf(calendar.get(Calendar.YEAR));
             message = message.replace("%m", year);
         }
-
+        
         if (message.contains("%Y")) {
             int year = calendar.get(Calendar.YEAR);
             String year_new = String.valueOf(year);
             year_new = year_new.replace("19", "").replace("20", "");
             message = message.replace("%Y", year_new);
         }
-
+        
         if (message.contains("%d")) {
             final String day = String.valueOf(calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
             message = message.replace("%d", day);
         }
-
+        
         if (message.contains("%D")) {
             final String day = String.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
             message = message.replace("%D", day);
         }
-
+        
         message = replaceColors(message);
         return message;
     }
-
+    
     public static boolean registerListener() {
         try {
             String prio = Config.EVENTPRIORITY.getString();
@@ -209,7 +208,7 @@ public class Utils {
             return false;
         }
     }
-
+    
     public static String replaceFaction(Player player, String msg) {
         if (!HookManager.checkFactions()) {
             return msg.replace("%faction", "");
@@ -218,7 +217,7 @@ public class Utils {
         final Faction faction = uplayer.getFaction();
         return msg.replace("%faction", faction.getName());
     }
-
+    
     private static boolean checkForIPPattern(String message) {
         ChatEX.debug("IP: Searching for ip: " + message);
         Matcher regexMatcher = ipPattern.matcher(message);
@@ -228,7 +227,7 @@ public class Utils {
                 String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "").split("/")[0];
                 ChatEX.debug("IP: AdCheck ip: " + text);
                 ChatEX.debug("IP: AdCheck length: " + text.split("\\.").length);
-
+                
                 if (text.split("\\.").length > 4) {
                     ChatEX.debug("IP: Removing subdomains...");
                     String[] domains = text.split("\\.");
@@ -244,7 +243,7 @@ public class Utils {
                     text = one + "." + two + "." + three + "." + four;
                     ChatEX.debug("AdCheck 6:" + text);
                 }
-
+                
                 if (ipPattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(regexMatcher.group().trim())) {
                         ChatEX.debug("IP: Found ad: " + text);
@@ -255,7 +254,7 @@ public class Utils {
         }
         return false;
     }
-
+    
     private static boolean checkForWebPattern(String message) {
         ChatEX.debug("WEB: Searching for url: " + message);
         Matcher regexMatcher = webpattern.matcher(message);
@@ -265,7 +264,7 @@ public class Utils {
                 String text = regexMatcher.group().trim().replaceAll("http://", "").replaceAll("https://", "").split("/")[0];
                 ChatEX.debug("WEB: AdCheck url: " + text);
                 ChatEX.debug("WEB: AdCheck length: " + text.split("\\.").length);
-
+                
                 if (text.split("\\.").length > 2) {
                     ChatEX.debug("WEB: Removing subdomains...");
                     String[] domains = text.split("\\.");
@@ -277,7 +276,7 @@ public class Utils {
                     text = second + "." + toplevel;
                     ChatEX.debug("WEB: AdCheck 4:" + text);
                 }
-
+                
                 if (webpattern.matcher(text).find()) {
                     if (!Config.ADS_BYPASS.getStringList().contains(text)) {
                         ChatEX.debug("WEB: Found ad: " + text);
@@ -288,13 +287,20 @@ public class Utils {
         }
         return false;
     }
-
+    
     public static boolean check(String msg, Player p) {
         ChatEX.debug("Checking for advertising...");
         if (p.hasPermission("chatex.bypassads")) return false;
         if (!Config.ADS_ENABLED.getBoolean()) return false;
         boolean found = checkForIPPattern(msg) || checkForWebPattern(msg);
         if (found) {
+            for (Player op : ChatEX.getInstance().getServer().getOnlinePlayers()) {
+                if (!op.hasPermission("chatex.notifyad")) continue;
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("%player", p.getName());
+                map.put("%message", msg);
+                Locales.MESSAGES_AD_NOTIFY.send(p, map);
+            }
             ChatLogger.writeToAdFile(p, msg);
         }
         return found;
