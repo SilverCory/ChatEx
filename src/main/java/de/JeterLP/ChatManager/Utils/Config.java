@@ -62,7 +62,7 @@ public enum Config {
     }
 
     public String getString() {
-        return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "Â§$1");
+        return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
     }
 
     public List<String> getStringList() {
