@@ -1,5 +1,6 @@
 package de.JeterLP.ChatManager;
 
+import de.JeterLP.ChatManager.Command.CommandManager;
 import de.JeterLP.ChatManager.Plugins.PermissionsPlugin;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
@@ -13,10 +14,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author TheJeterLP
  */
 public class ChatEX extends JavaPlugin {
-
+    
     private static ChatEX INSTANCE;
     private static PluginManager manager;
-
+    private CommandManager cmanager;
+    
     @Override
     public void onEnable() {
         try {
@@ -46,29 +48,30 @@ public class ChatEX extends JavaPlugin {
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
-            Manager.registerCommand(ChatExCommand.class);
+            cmanager = new CommandManager(this);
+            cmanager.registerClass(ChatExCommandHandler.class);
             getLogger().info("is now enabled!");
         } catch (Exception e) {
             getServer().getPluginManager().disablePlugin(this);
             e.printStackTrace();
         }
-
+        
     }
-
+    
     @Override
     public void onDisable() {
         getServer().getScheduler().cancelTasks(this);
         getLogger().info("is now disabled!");
     }
-
+    
     public static ChatEX getInstance() {
         return INSTANCE;
     }
-
+    
     public static PermissionsPlugin getManager() {
         return manager;
     }
-
+    
     public static void debug(String message) {
         if (!Config.DEBUG.getBoolean()) return;
         String output = "[DEBUG] " + message;

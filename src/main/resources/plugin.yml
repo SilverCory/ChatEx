@@ -4,9 +4,3 @@ version: ${project.version}
 author: TheJeterLP
 description: Chat management plugin
 softdepend: [PermissionsEx,Vault,bPermissions]
-
-commands:
-    chatex:
-        usage: /<command> reload|clear
-        description: Reloads ${project.name}
-        aliases: [chat]

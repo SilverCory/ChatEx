@@ -59,19 +59,18 @@ public class CommandArgs {
     }
 
     public boolean isPlayer(int num) {
-        Player p = Bukkit.getPlayer(args[num]);
-        return p != null;
+        return Bukkit.getPlayer(args[num]) != null;
     }
 
-    public Player getPlayer(int num) {
-        return Bukkit.getPlayer(args[num]);
+    public int getInt(int num) {
+        return Integer.valueOf(args[num]);
     }
 
     public OfflinePlayer getOfflinePlayer(int num) {
         return Bukkit.getOfflinePlayer(args[num]);
     }
 
-    public int getInt(int num) {
-        return Integer.valueOf(args[num]);
+    public Player getPlayer(int i) {
+        return Bukkit.getPlayer(args[i]);
     }
 }
