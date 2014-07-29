@@ -23,7 +23,7 @@ public class ChatLogger {
         }
         try {
             bw = new BufferedWriter(new FileWriter(file + File.separator + fileName(), true));
-            bw.write(prefix() + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
+            bw.write(prefix(false) + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
             bw.newLine();
         } catch (Exception ex) {
         } finally {
@@ -36,13 +36,13 @@ public class ChatLogger {
             }
         }
     }
-    
+
     public static void writeToAdFile(Player player, String message) {
         if (!Config.ADS_LOG.getBoolean()) return;
-        BufferedWriter bw = null;       
+        BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(ChatEX.getInstance().getDataFolder().getAbsolutePath() + File.separator + "ads.log", true));
-            bw.write(prefix() + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
+            bw.write(prefix(true) + player.getName() + " (uuid: " + player.getUniqueId() + "): " + message);
             bw.newLine();
         } catch (Exception ex) {
         } finally {
@@ -62,8 +62,9 @@ public class ChatLogger {
         return date.format(cal.getTime()) + ".log";
     }
 
-    private static String prefix() {
-        DateFormat date = new SimpleDateFormat("[dd-MM-yyyy HH:mm:ss] ");
+    private static String prefix(boolean day) {
+
+        DateFormat date = day ? new SimpleDateFormat("[dd-MM-yyyy HH:mm:ss] ") : new SimpleDateFormat("[HH:mm:ss] ");
         Calendar cal = Calendar.getInstance();
         return date.format(cal.getTime());
     }

@@ -60,7 +60,7 @@ public class Utils {
     
     public static List<Player> getLocalRecipients(Player sender) {
         Location playerLocation = sender.getLocation();
-        List<Player> recipients = new ArrayList<Player>();
+        List<Player> recipients = new ArrayList<>();
         double squaredDistance = Math.pow(Config.RANGE.getDouble(), 2);
         for (Player recipient : sender.getWorld().getPlayers()) {
             if (playerLocation.distanceSquared(recipient.getLocation()) > squaredDistance) {
@@ -296,7 +296,7 @@ public class Utils {
         if (found) {
             for (Player op : ChatEX.getInstance().getServer().getOnlinePlayers()) {
                 if (!op.hasPermission("chatex.notifyad")) continue;
-                HashMap<String, String> map = new HashMap<String, String>();
+                HashMap<String, String> map = new HashMap<>();
                 map.put("%player", p.getName());
                 map.put("%message", msg);
                 Locales.MESSAGES_AD_NOTIFY.send(op, map);
