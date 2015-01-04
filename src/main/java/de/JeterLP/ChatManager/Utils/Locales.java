@@ -74,6 +74,7 @@ public enum Locales {
                 }
                 reload(false);
             } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
                 reload(false);
                 for (Locales c : values()) {
                     if (!cfg.contains(c.getPath())) {

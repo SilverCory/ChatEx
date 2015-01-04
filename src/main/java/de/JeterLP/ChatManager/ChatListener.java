@@ -49,7 +49,7 @@ public abstract class ChatListener implements Listener {
 
     protected void execute(AsyncPlayerChatEvent event) {
         if (!event.getPlayer().hasPermission("chatex.allowchat")) {
-            Map<String, String> rep = new HashMap<String, String>();
+            Map<String, String> rep = new HashMap<>();
             rep.put("%perm", "chatex.allowchat");
             Locales.COMMAND_RESULT_NO_PERM.send(event.getPlayer(), rep);
             event.setCancelled(true);
@@ -63,7 +63,7 @@ public abstract class ChatListener implements Listener {
         String chatMessage = event.getMessage();
 
         if (Utils.check(chatMessage, player)) {
-            Map<String, String> rep = new HashMap<String, String>();
+            Map<String, String> rep = new HashMap<>();
             rep.put("%perm", "chatex.bypassads");
             Locales.MESSAGES_AD.send(player, rep);
             event.setCancelled(true);

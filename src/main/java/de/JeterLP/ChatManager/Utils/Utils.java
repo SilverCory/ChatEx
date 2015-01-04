@@ -1,7 +1,7 @@
 package de.JeterLP.ChatManager.Utils;
 
 import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.UPlayer;
+import com.massivecraft.factions.entity.MPlayer;
 import de.JeterLP.ChatManager.ChatEX;
 import de.JeterLP.ChatManager.ChatListener;
 import de.JeterLP.ChatManager.Plugins.PluginManager;
@@ -213,13 +213,14 @@ public class Utils {
         if (!HookManager.checkFactions()) {
             return msg.replace("%faction", "");
         }
-        final UPlayer uplayer = UPlayer.get(player);
+        final MPlayer uplayer = MPlayer.get(player);
         final Faction faction = uplayer.getFaction();
         return msg.replace("%faction", faction.getName());
     }
     
     private static boolean checkForIPPattern(String message) {
         ChatEX.debug("IP: Searching for ip: " + message);
+        message = message.replaceAll(" ", "");
         Matcher regexMatcher = ipPattern.matcher(message);
         while (regexMatcher.find()) {
             ChatEX.debug("IP: Found!");
@@ -257,6 +258,7 @@ public class Utils {
     
     private static boolean checkForWebPattern(String message) {
         ChatEX.debug("WEB: Searching for url: " + message);
+        message = message.replaceAll(" ", "");
         Matcher regexMatcher = webpattern.matcher(message);
         while (regexMatcher.find()) {
             ChatEX.debug("WEB: Found!");
