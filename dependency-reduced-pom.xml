@@ -42,8 +42,20 @@
               <artifactSet>
                 <includes>
                   <include>de.TheJeterLP.Bukkit:Updater</include>
+                  <include>com.google.code.gson:gson</include>
+                  <include>commons-io:commons-io</include>
                 </includes>
               </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>com.google.code.gson</pattern>
+                  <shadedPattern>de.JeterLP.shaded.com.google.code.gson</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>commons-io</pattern>
+                  <shadedPattern>de.JeterLP.shaded.commons-io</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
@@ -52,8 +64,8 @@
   </build>
   <repositories>
     <repository>
-      <id>bukkit repo</id>
-      <url>http://repo.bukkit.org/content/groups/public</url>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
     </repository>
     <repository>
       <id>vault-repo</id>
@@ -67,8 +79,8 @@
   <dependencies>
     <dependency>
       <groupId>org.spigotmc</groupId>
-      <artifactId>spigot</artifactId>
-      <version>1.8.1</version>
+      <artifactId>spigot-api</artifactId>
+      <version>1.8.3-R0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
