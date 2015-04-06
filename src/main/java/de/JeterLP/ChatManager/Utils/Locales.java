@@ -4,7 +4,7 @@ import de.JeterLP.ChatManager.ChatEX;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import net.minecraft.util.org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 

@@ -5,7 +5,7 @@
     <artifactId>ChatEx</artifactId>
     <name>ChatEx</name>
     <inceptionYear>2013</inceptionYear>
-    <version>1.2</version>
+    <version>1.3</version>
     <description>ChatManagement plugin for Bukkit</description>  
     
     <scm>
@@ -34,8 +34,20 @@
                             <artifactSet>
                                 <includes>
                                     <include>de.TheJeterLP.Bukkit:Updater</include>
+                                    <include>com.google.code.gson:gson</include>
+                                    <include>commons-io:commons-io</include>
                                 </includes>
-                            </artifactSet>                           
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.google.code.gson</pattern>
+                                    <shadedPattern>de.JeterLP.shaded.com.google.code.gson</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>commons-io</pattern>
+                                    <shadedPattern>de.JeterLP.shaded.commons-io</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
@@ -55,8 +67,8 @@
     </build>
     <repositories>
         <repository>
-            <id>bukkit repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>vault-repo</id>
@@ -70,8 +82,8 @@
     <dependencies>      
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.8.1</version>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.3-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
@@ -99,6 +111,16 @@
             <artifactId>Updater</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
         </dependency>
     </dependencies>
     <properties>
