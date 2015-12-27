@@ -63,7 +63,6 @@ public class ChatLogger {
     }
 
     private static String prefix(boolean day) {
-
         DateFormat date = day ? new SimpleDateFormat("[dd-MM-yyyy HH:mm:ss] ") : new SimpleDateFormat("[HH:mm:ss] ");
         Calendar cal = Calendar.getInstance();
         return date.format(cal.getTime());
