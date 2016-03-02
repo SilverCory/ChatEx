@@ -20,6 +20,10 @@ public class HookManager {
 
     public static boolean checkFactions() {
         Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("Factions");
-        return plugin != null && plugin.isEnabled();
+        if (plugin != null) {
+            return plugin.isEnabled() && plugin.getDescription().getVersion().startsWith("2.");
+        } else {
+            return false;
+        }
     }
 }
