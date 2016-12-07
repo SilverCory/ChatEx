@@ -6,7 +6,7 @@ import de.JeterLP.ChatManager.Plugins.PluginManager;
 import de.JeterLP.ChatManager.Utils.*;
 import de.JeterLP.ChatManager.Utils.Config;
 import de.JeterLP.ChatManager.Utils.Utils;
-import de.thejeterlp.bukkit.updater.Updater;
+import de.thejeterlp.bukkit.updater.Updater; 
 import java.io.File;
 import org.bukkit.plugin.java.JavaPlugin;
  

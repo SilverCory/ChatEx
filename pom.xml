@@ -54,6 +54,10 @@
                                     <pattern>commons-io</pattern>
                                     <shadedPattern>de.JeterLP.shaded.commons-io</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>de.thejeterlp.bukkit.updater</pattern>
+                                    <shadedPattern>de.JeterLP.ChatManager.update</shadedPattern>
+                                </relocation>
                             </relocations>
                         </configuration>
                     </execution>
