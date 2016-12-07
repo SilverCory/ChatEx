@@ -1,10 +1,10 @@
 package de.JeterLP.ChatManager.Utils;
 
+import com.google.common.io.Files;
 import de.JeterLP.ChatManager.ChatEX;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import org.apache.commons.io.FileUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -12,7 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * @author TheJeterLP
  */
 public enum Locales {
-    
+
     COMMAND_RELOAD_DESCRIPTION("Commands.Reload.Description", "Reloads the plugin and its configuration."),
     COMMAND_CLEAR_DESCRIPTION("Commands.Clear.Description", "Clears the chat."),
     COMMAND_CLEAR_CONSOLE("Commands.Clear.Console", "CONSOLE"),
@@ -27,34 +27,34 @@ public enum Locales {
     PLAYER_FIRST_JOIN("Messages.Player.FirstJoin", "%faction %prefix%displayname%suffix &ejoined the game &6for the first time!"),
     PLAYER_KICK("Messages.Player.Kick", "%faction %prefix%displayname%suffix &ewas kicked from the game!"),
     PLAYER_QUIT("Messages.Player.Quit", "%faction %prefix%displayname%suffix &eleft the game!");
-    
+
     private final String value;
     private final String path;
     private static YamlConfiguration cfg;
     private static final File localeFolder = new File(ChatEX.getInstance().getDataFolder().getAbsolutePath() + File.separator + "locales");
-    private static final File f = new File(localeFolder, Config.LOCALE.getString() + ".yml");
-    
+    private static File f;
+
     private Locales(String path, String val) {
         this.path = path;
         this.value = val;
     }
-    
+
     public String getPath() {
         return path;
     }
-    
+
     public String getDefaultValue() {
         return value;
     }
-    
+
     public String getString() {
         return cfg.getString(path).replaceAll("&((?i)[0-9a-fk-or])", "§$1");
     }
-    
+
     public void send(CommandSender s) {
         s.sendMessage(getString());
     }
-    
+
     public void send(CommandSender s, Map<String, String> map) {
         String msg = getString();
         for (String string : map.keySet()) {
@@ -62,15 +62,16 @@ public enum Locales {
         }
         s.sendMessage(msg);
     }
-    
+
     public static void load() throws IOException {
         localeFolder.mkdirs();
+        f = new File(localeFolder, Config.LOCALE.getString() + ".yml");
         if (!f.exists()) {
             try {
                 ChatEX.getInstance().saveResource("locales" + File.separator + Config.LOCALE.getString() + ".yml", true);
                 File locale = new File(ChatEX.getInstance().getDataFolder(), Config.LOCALE.getString() + ".yml");
                 if (locale.exists()) {
-                    FileUtils.moveFile(locale, f);
+                    Files.move(locale, f);
                 }
                 reload(false);
             } catch (IllegalArgumentException ex) {
@@ -100,7 +101,7 @@ public enum Locales {
             }
         }
     }
-    
+
     public void set(Object value, boolean save) throws IOException {
         cfg.set(path, value);
         if (save) {
@@ -112,7 +113,7 @@ public enum Locales {
             reload(false);
         }
     }
-    
+
     public static void reload(boolean complete) throws IOException {
         if (!complete) {
             cfg = YamlConfiguration.loadConfiguration(f);
@@ -120,10 +121,12 @@ public enum Locales {
         }
         load();
     }
-    
+
     public static Locales fromPath(String path) {
         for (Locales loc : values()) {
-            if (loc.getPath().equalsIgnoreCase(path)) return loc;
+            if (loc.getPath().equalsIgnoreCase(path)) {
+                return loc;
+            }
         }
         return null;
     }
