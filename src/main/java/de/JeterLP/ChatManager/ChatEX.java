@@ -9,7 +9,7 @@ import de.JeterLP.ChatManager.Utils.Utils;
 import de.thejeterlp.bukkit.updater.Updater;
 import java.io.File;
 import org.bukkit.plugin.java.JavaPlugin;
-
+ 
 /**
  * @author TheJeterLP
  */
