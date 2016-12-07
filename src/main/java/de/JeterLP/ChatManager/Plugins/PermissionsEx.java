@@ -22,10 +22,15 @@ public class PermissionsEx implements PermissionsPlugin {
             finalPrefix = personalPrefix;
         }
         PermissionGroup[] userGroups = user.getGroups();
+        int i = 0;
         for (PermissionGroup group : userGroups) {
             String groupPrefix = group.getPrefix();
             if (groupPrefix != null && !groupPrefix.isEmpty()) {
+            	if(i > 0) {
+            		finalPrefix += ' ';
+            	}
                 finalPrefix += groupPrefix;
+                i ++;
             }
         }
         return finalPrefix;
@@ -44,11 +49,18 @@ public class PermissionsEx implements PermissionsPlugin {
         String finalSuffix = "";
         if (personalSuffix != null && !personalSuffix.isEmpty()) {
             finalSuffix = personalSuffix;
+           
         }
+        
         PermissionGroup[] userGroups = user.getGroups();
+        int i = 0;
         for (PermissionGroup group : userGroups) {
             String groupSuffix = group.getSuffix();
             if (groupSuffix != null && !groupSuffix.isEmpty()) {
+            	 if(i > 0) {
+                 	finalSuffix += ' ';
+                 }
+                 i ++;
                 finalSuffix += groupSuffix;
             }
         }
