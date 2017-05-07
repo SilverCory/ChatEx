@@ -26,7 +26,7 @@ public class PermissionsEx implements PermissionsPlugin {
         for (PermissionGroup group : userGroups) {
             String groupPrefix = group.getPrefix();
             if (groupPrefix != null && !groupPrefix.isEmpty()) {
-            	if(i > 0) {
+            	if(i > 1) {
             		finalPrefix += " ";
             	}
                 finalPrefix += groupPrefix;
@@ -57,7 +57,7 @@ public class PermissionsEx implements PermissionsPlugin {
         for (PermissionGroup group : userGroups) {
             String groupSuffix = group.getSuffix();
             if (groupSuffix != null && !groupSuffix.isEmpty()) {
-            	 if(i > 0) {
+            	 if(i > 1) {
                  	finalSuffix += " ";
                  }
                  i ++;

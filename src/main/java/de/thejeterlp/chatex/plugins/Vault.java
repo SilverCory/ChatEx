@@ -19,10 +19,15 @@ public class Vault implements PermissionsPlugin {
             return chat.getPlayerPrefix(p.getWorld().getName(), p);
         }
         String finalPrefix = "";
+        int i = 0;
         for (String group : chat.getPlayerGroups(p)) {
             String groupPrefix = chat.getGroupPrefix(p.getWorld(), group);
             if (groupPrefix != null && !groupPrefix.isEmpty()) {
+                if (i > 1) {
+                    finalPrefix += " ";
+                }
                 finalPrefix += groupPrefix;
+                i++;
             }
         }
         return finalPrefix;
@@ -34,9 +39,14 @@ public class Vault implements PermissionsPlugin {
             return chat.getPlayerSuffix(p.getWorld().getName(), p);
         }
         String finalSuffix = "";
+        int i = 0;
         for (String group : chat.getPlayerGroups(p)) {
             String groupSuffix = chat.getGroupSuffix(p.getWorld(), group);
             if (groupSuffix != null && !groupSuffix.isEmpty()) {
+                if (i > 1) {
+                    finalSuffix += " ";
+                }
+                i++;
                 finalSuffix += groupSuffix;
             }
         }
