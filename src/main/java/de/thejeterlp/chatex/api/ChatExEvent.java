@@ -35,6 +35,10 @@ public final class ChatExEvent extends PlayerEvent {
     public HandlerList getHandlers() {
         return handlers;
     }
+    
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
     public void replaceVariable(String variable, String value) {
         this.format = format.replaceAll(variable, value);
