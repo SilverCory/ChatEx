@@ -150,21 +150,21 @@
       <artifactId>PermissionsEx</artifactId>
       <version>1.23.3</version>
       <scope>system</scope>
-      <systemPath>C:\Workspace\java\ChatEx/libs/PermissionsEx.jar</systemPath>
+      <systemPath>C:\Users\joeyp\Desktop\Workspace\ChatEx/libs/PermissionsEx.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.massivecraft</groupId>
       <artifactId>factions</artifactId>
       <version>2.7.5</version>
       <scope>system</scope>
-      <systemPath>C:\Workspace\java\ChatEx/libs/MassiveCore.jar</systemPath>
+      <systemPath>C:\Users\joeyp\Desktop\Workspace\ChatEx/libs/MassiveCore.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.massivecraft</groupId>
       <artifactId>massivecore</artifactId>
       <version>2.7.5</version>
       <scope>system</scope>
-      <systemPath>C:\Workspace\java\ChatEx/libs/Factions.jar</systemPath>
+      <systemPath>C:\Users\joeyp\Desktop\Workspace\ChatEx/libs/Factions.jar</systemPath>
     </dependency>
   </dependencies>
   <distributionManagement>
