@@ -4,6 +4,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 import de.thejeterlp.chatex.ChatEX;
 import de.thejeterlp.chatex.ChatListener;
+import de.thejeterlp.chatex.api.ChatExEvent;
 import de.thejeterlp.chatex.plugins.PluginManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -81,6 +82,11 @@ public class Utils {
         result = result.replace("%group", PluginManager.getInstance().getGroupNames(player)[0]);
         result = replaceTime(result);
         result = replaceFaction(player, result);
+        
+        ChatExEvent e = new ChatExEvent(player, result);
+        ChatEX.getInstance().getServer().getPluginManager().callEvent(e);
+        result = e.getFormat();
+         
         result = replaceColors(result);
         return result;
     }
