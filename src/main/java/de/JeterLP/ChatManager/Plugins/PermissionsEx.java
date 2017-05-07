@@ -27,7 +27,7 @@ public class PermissionsEx implements PermissionsPlugin {
             String groupPrefix = group.getPrefix();
             if (groupPrefix != null && !groupPrefix.isEmpty()) {
             	if(i > 0) {
-            		finalPrefix += ' ';
+            		finalPrefix += " ";
             	}
                 finalPrefix += groupPrefix;
                 i ++;
@@ -58,7 +58,7 @@ public class PermissionsEx implements PermissionsPlugin {
             String groupSuffix = group.getSuffix();
             if (groupSuffix != null && !groupSuffix.isEmpty()) {
             	 if(i > 0) {
-                 	finalSuffix += ' ';
+                 	finalSuffix += " ";
                  }
                  i ++;
                 finalSuffix += groupSuffix;

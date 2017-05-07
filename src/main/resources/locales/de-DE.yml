@@ -7,14 +7,14 @@ Commands:
     Unknown: 'UNBEKANNT'
 Messages:
   Chat:
-    AdDetected: '&4Werbung ist nicht erlaubt! (%perm)'
+    AdDetected: '&4[FEHLER] &7Werbung ist nicht erlaubt! &c(%perm)'
   Commands:
     Reload:
       Success: '&aChatEx wurde neugeladen.'
     Clear:
       Success: '&aDer Chat wurde geleert von '
   CommandResult:
-    NoPermission: '&4[FEHLER] &7Dafür hast du nicht die nötigen Rechte! &c(%perm%)'
+    NoPermission: '&4[FEHLER] &7Dafür hast du nicht die nötigen Rechte! &c(%perm)'
     WrongUsage: '&c[FEHLER] &7Falsche Benutzung! Benutze &6/%cmd% help&7!'
   Player:
       Join: '%faction %prefix%displayname%suffix &ehat den Server betreten!'
