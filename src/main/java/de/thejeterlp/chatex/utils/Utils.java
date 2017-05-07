@@ -193,7 +193,7 @@ public class Utils {
     public static boolean registerListener() {
         try {
             String prio = Config.EVENTPRIORITY.getString();
-            Object listener = Class.forName("de.JeterLP.ChatManager.Listeners." + prio).newInstance();
+            Object listener = Class.forName("de.thejeterlp.chatex.listeners." + prio).newInstance();
             if (listener instanceof ChatListener) {
                 ChatListener l = (ChatListener) listener;
                 l.register();
