@@ -57,13 +57,13 @@ public class ChatLogger {
     }
 
     private static String fileName() {
-        DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         return date.format(cal.getTime()) + ".log";
     }
 
     private static String prefix(boolean day) {
-        DateFormat date = day ? new SimpleDateFormat("[dd-MM-yyyy HH:mm:ss] ") : new SimpleDateFormat("[HH:mm:ss] ");
+        DateFormat date = day ? new SimpleDateFormat("[yyyy-MM-dd HH:mm:ss] ") : new SimpleDateFormat("[HH:mm:ss] ");
         Calendar cal = Calendar.getInstance();
         return date.format(cal.getTime());
     }
