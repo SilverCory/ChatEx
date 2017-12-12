@@ -48,7 +48,7 @@ public final class ChatExEvent extends PlayerEvent {
         return this.format;
     }
 
-    public void setFormat(String Format) {
+    public void setFormat(String format) {
         this.format = format;
     }
 
