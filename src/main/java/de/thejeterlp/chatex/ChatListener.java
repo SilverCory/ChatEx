@@ -5,22 +5,22 @@ import de.thejeterlp.chatex.utils.ChatLogger;
 import de.thejeterlp.chatex.utils.Config;
 import de.thejeterlp.chatex.utils.Locales;
 import de.thejeterlp.chatex.utils.Utils;
-import java.util.HashMap;
-import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.event.*;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.EventExecutor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author TheJeterLP
  */
-public abstract class ChatListener implements Listener {
+public class ChatListener implements Listener, EventExecutor {
 
     public void register() {
         Bukkit.getServer().getPluginManager().registerEvents(this, ChatEX.getInstance());
@@ -47,7 +47,7 @@ public abstract class ChatListener implements Listener {
         e.setLeaveMessage(Utils.replacePlayerPlaceholders(e.getPlayer(), msg));
     }
 
-    protected void execute(AsyncPlayerChatEvent event) {
+    public void execute(AsyncPlayerChatEvent event) {
         if (!event.getPlayer().hasPermission("chatex.allowchat")) {
             Map<String, String> rep = new HashMap<>();
             rep.put("%perm", "chatex.allowchat");
@@ -95,4 +95,12 @@ public abstract class ChatListener implements Listener {
         ChatLogger.writeToFile(event.getPlayer(), event.getMessage());
     }
 
+    @Override
+    public void execute(Listener listener, Event event) {
+        if (listener != this || !event.getClass().equals(AsyncPlayerChatEvent.class)) {
+            return;
+        }
+
+        execute((AsyncPlayerChatEvent) event);
+    }
 }

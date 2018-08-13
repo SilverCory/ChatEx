@@ -3,20 +3,16 @@ package de.thejeterlp.chatex.utils;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 import de.thejeterlp.chatex.ChatEX;
-import de.thejeterlp.chatex.ChatListener;
 import de.thejeterlp.chatex.api.ChatExEvent;
 import de.thejeterlp.chatex.plugins.PluginManager;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author TheJeterLP
@@ -194,25 +190,6 @@ public class Utils {
         
         message = replaceColors(message);
         return message;
-    }
-    
-    public static boolean registerListener() {
-        try {
-            String prio = Config.EVENTPRIORITY.getString();
-            Object listener = Class.forName("de.thejeterlp.chatex.listeners." + prio).newInstance();
-            if (listener instanceof ChatListener) {
-                ChatListener l = (ChatListener) listener;
-                l.register();
-                ChatEX.getInstance().getLogger().info("Listener registered with Priority: " + prio);
-                return true;
-            } else {
-                ChatEX.getInstance().getLogger().severe("Listener is not an instance of the Listener Class.");
-                return false;
-            }
-        } catch (Throwable ex) {
-            ex.printStackTrace();
-            return false;
-        }
     }
     
     public static String replaceFaction(Player player, String msg) {

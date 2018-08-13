@@ -5,9 +5,11 @@ import de.thejeterlp.chatex.command.CommandManager;
 import de.thejeterlp.chatex.plugins.PermissionsPlugin;
 import de.thejeterlp.chatex.plugins.PluginManager;
 import de.thejeterlp.chatex.utils.Config;
-import de.thejeterlp.chatex.utils.Utils;
 import de.thejeterlp.bukkit.updater.Updater; 
 import java.io.File;
+
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
  
 /**
@@ -43,7 +45,13 @@ public class ChatEX extends JavaPlugin {
             u.search();
             getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
             debug("registering Listener...");
-            if (!Utils.registerListener()) {
+
+            try {
+                EventPriority eventPriority = EventPriority.valueOf(Config.EVENTPRIORITY.getString());
+                ChatListener listener = new ChatListener();
+                getServer().getPluginManager().registerEvent(AsyncPlayerChatEvent.class, listener, eventPriority, listener, this, false);
+                listener.register();
+            } catch (IllegalArgumentException ex) {
                 getLogger().severe("No valid Listener could be found. Please see the reamde.txt for more information.");
                 getServer().getPluginManager().disablePlugin(this);
                 return;
