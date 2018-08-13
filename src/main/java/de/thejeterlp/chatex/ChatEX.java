@@ -1,16 +1,15 @@
 package de.thejeterlp.chatex;
 
-import de.thejeterlp.chatex.utils.Locales;
 import de.thejeterlp.chatex.command.CommandManager;
 import de.thejeterlp.chatex.plugins.PermissionsPlugin;
 import de.thejeterlp.chatex.plugins.PluginManager;
 import de.thejeterlp.chatex.utils.Config;
-import de.thejeterlp.bukkit.updater.Updater; 
-import java.io.File;
-
+import de.thejeterlp.chatex.utils.Locales;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
  
 /**
  * @author TheJeterLP
@@ -41,8 +40,6 @@ public class ChatEX extends JavaPlugin {
             debug("Starting Metrics/MCStats...");
             new Metrics(this).start();
             debug("Starting updater...");
-            Updater u = new Updater(this, 65863, "chatex");
-            u.search();
             getLogger().info("Successfully hooked into: " + PluginManager.getInstance().getName());
             debug("registering Listener...");
 
