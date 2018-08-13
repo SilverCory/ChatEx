@@ -46,7 +46,7 @@ public class ChatEX extends JavaPlugin {
             try {
                 EventPriority eventPriority = EventPriority.valueOf(Config.EVENTPRIORITY.getString());
                 ChatListener listener = new ChatListener();
-                getServer().getPluginManager().registerEvent(AsyncPlayerChatEvent.class, listener, eventPriority, listener, this, false);
+                getServer().getPluginManager().registerEvent(AsyncPlayerChatEvent.class, listener, eventPriority, listener, this, true);
                 listener.register();
             } catch (IllegalArgumentException ex) {
                 getLogger().severe("No valid Listener could be found. Please see the reamde.txt for more information.");
